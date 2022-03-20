@@ -55,6 +55,45 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Community" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="HolySubscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Last4Digits" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdentityCard" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ReceptionNumber" Type="int" Nullable="false" />
+          <Property Name="HolySubscriptionId" Type="int" Nullable="false" />
+          <Property Name="Aproved" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegularSubscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="TopicsOfInterest" Type="int" />
+          <Property Name="Age" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -112,12 +151,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HolySubscription_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="HolySubscription" Type="Self.HolySubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HolySubscription">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_HolySubscription">
+          <End Role="HolySubscription" Type="Self.HolySubscription" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HolySubscription">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="HolySubscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegularSubscription_RegularSubscription">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="RegularSubscription" Type="Self.RegularSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegularSubscription">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Model1StoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HolySubscription" EntityType="Self.HolySubscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegularSubscription" EntityType="Self.RegularSubscription" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -133,6 +211,18 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HolySubscription_AspNetUsers" Association="Self.FK_HolySubscription_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="HolySubscription" EntitySet="HolySubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_HolySubscription" Association="Self.FK_Payment_HolySubscription">
+            <End Role="HolySubscription" EntitySet="HolySubscription" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegularSubscription_RegularSubscription" Association="Self.FK_RegularSubscription_RegularSubscription">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RegularSubscription" EntitySet="RegularSubscription" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -155,6 +245,21 @@
           <AssociationSet Name="AspNetUserRoles" Association="Model1.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="HolySubscription" EntityType="Model1.HolySubscription" />
+          <EntitySet Name="Payment" EntityType="Model1.Payment" />
+          <EntitySet Name="RegularSubscription" EntityType="Model1.RegularSubscription" />
+          <AssociationSet Name="FK_HolySubscription_AspNetUsers" Association="Model1.FK_HolySubscription_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="HolySubscription" EntitySet="HolySubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegularSubscription_RegularSubscription" Association="Model1.FK_RegularSubscription_RegularSubscription">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RegularSubscription" EntitySet="RegularSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_HolySubscription" Association="Model1.FK_Payment_HolySubscription">
+            <End Role="HolySubscription" EntitySet="HolySubscription" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRoles">
@@ -205,6 +310,10 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Model1.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Community" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HolySubscription" Relationship="Model1.FK_HolySubscription_AspNetUsers" FromRole="AspNetUsers" ToRole="HolySubscription" />
+          <NavigationProperty Name="RegularSubscription" Relationship="Model1.FK_RegularSubscription_RegularSubscription" FromRole="AspNetUsers" ToRole="RegularSubscription" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -237,6 +346,83 @@
         <Association Name="AspNetUserRoles">
           <End Type="Model1.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
           <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityType Name="HolySubscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Last4Digits" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TokenNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityCard" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model1.FK_HolySubscription_AspNetUsers" FromRole="HolySubscription" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Payment" Relationship="Model1.FK_Payment_HolySubscription" FromRole="HolySubscription" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ReceptionNumber" Type="Int32" Nullable="false" />
+          <Property Name="HolySubscriptionId" Type="Int32" Nullable="false" />
+          <Property Name="Aproved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HolySubscription" Relationship="Model1.FK_Payment_HolySubscription" FromRole="Payment" ToRole="HolySubscription" />
+        </EntityType>
+        <EntityType Name="RegularSubscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="TopicsOfInterest" Type="Int32" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model1.FK_RegularSubscription_RegularSubscription" FromRole="RegularSubscription" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK_HolySubscription_AspNetUsers">
+          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="Model1.HolySubscription" Role="HolySubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HolySubscription">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegularSubscription_RegularSubscription">
+          <End Type="Model1.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="Model1.RegularSubscription" Role="RegularSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegularSubscription">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_HolySubscription">
+          <End Type="Model1.HolySubscription" Role="HolySubscription" Multiplicity="1" />
+          <End Type="Model1.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HolySubscription">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="HolySubscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -276,6 +462,8 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="Model1.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Community" ColumnName="Community" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -299,6 +487,46 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="HolySubscription">
+            <EntityTypeMapping TypeName="Model1.HolySubscription">
+              <MappingFragment StoreEntitySet="HolySubscription">
+                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+                <ScalarProperty Name="TokenNumber" ColumnName="TokenNumber" />
+                <ScalarProperty Name="Last4Digits" ColumnName="Last4Digits" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="Model1.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Aproved" ColumnName="Aproved" />
+                <ScalarProperty Name="HolySubscriptionId" ColumnName="HolySubscriptionId" />
+                <ScalarProperty Name="ReceptionNumber" ColumnName="ReceptionNumber" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegularSubscription">
+            <EntityTypeMapping TypeName="Model1.RegularSubscription">
+              <MappingFragment StoreEntitySet="RegularSubscription">
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="TopicsOfInterest" ColumnName="TopicsOfInterest" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

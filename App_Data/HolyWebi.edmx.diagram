@@ -12,6 +12,12 @@
         <AssociationConnector Association="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Model1.AspNetUserRoles" />
+        <EntityTypeShape EntityType="Model1.HolySubscription" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="Model1.Payment" Width="1.5" PointX="7.5" PointY="7.625" />
+        <EntityTypeShape EntityType="Model1.RegularSubscription" Width="1.5" PointX="5.25" PointY="11.125" />
+        <AssociationConnector Association="Model1.FK_HolySubscription_AspNetUsers" />
+        <AssociationConnector Association="Model1.FK_RegularSubscription_RegularSubscription" />
+        <AssociationConnector Association="Model1.FK_Payment_HolySubscription" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
