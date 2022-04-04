@@ -1,0 +1,17 @@
+﻿
+.login_page{
+    margin:0 auto;
+}
+.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 1rem ;
+}
+
+.img-fluid {
+   position:center;
+    border-radius: 1rem 0 0 1rem;
+    margin:50px auto;
+    text-align:center;
+    height:auto;
+}
