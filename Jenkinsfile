@@ -5,7 +5,7 @@ pipeline {
 					steps{
 						checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
 							  doGenerateSubmoduleConfigurations: false, extensions: [],
-							  submoduleCfg: [], userRemoteConfigs: ])
+							  submoduleCfg: [], userRemoteConfigs:[[url: 'http://147.234.32.36/job/Team_28/job/https/']] ])
 					}
 				}
 				stage('Build') {
