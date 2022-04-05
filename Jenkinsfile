@@ -1,31 +1,27 @@
 pipeline {
-    agent any
-
-    environment {
-        MSBUILD = 'C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe'
-        NUGET = 'C:\\Program Files (x86)\\NuGet\\nuget.exe'
-        CONFIG = 'Release'
-        PLATFORM = 'Any CPU'
-        SLN_NAME = 'HolyWebi.sln'
+  agent any
+    stage('Build') {
+      steps {
+        bat 'HolyWebi build HolyWebi.sln'
+      }
     }
-
-    stages {
-        stage('Build') {
-            steps {
-                bat "\"${NUGET}\" restore ${SLN_NAME}"
-                bat "\"${MSBUILD}\" ${SLN_NAME} /p:Configuration=${env.CONFIG};Platform=\"${env.PLATFORM}\" /maxcpucount:%NUMBER_OF_PROCESSORS% /nodeReuse:false"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-
-        }
+    stage('Test') {
+      steps {
+	      bat 'HolyWebi test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover ./HolyWebiTest/HolyWebiTest.csproj --logger "trx;LogFileName=TestResult.trx"'
+        bat 'reportgenerator "-reports:./HolyWebiTest/coverage.opencover.xml" "-targetdir:CoverageReport"'
+	    }     
     }
+    stage('Publish') {
+      steps {
+        bat 'dotnet publish ./HolyWebi/HolyWebi.csproj -c Release -o C:/JenkinsBuilds/'+env.JOB_NAME+'/'+env.BUILD_NUMBER
+      }
+    }
+  }
+  post { 
+    success {
+      publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './CoverageReport', reportFiles: 'index.htm', reportTitles: "CodeCoverageReport", reportName: "Code Coverage Report", includes: '**/*', escapeUnderscores: true])
+      step([$class: 'MSTestPublisher', testResultsFile:'**/TestResult.trx', failOnError: true, keepLongStdio: true])
+      cleanWs()
+    }
+  }
 }
