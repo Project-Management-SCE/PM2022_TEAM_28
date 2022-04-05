@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Jenkins.Net, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\jenkinsnet.1.0.4\lib\net45\Jenkins.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -219,40 +222,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Css\artworks-000118663714-cck69x-t500x500.jpg" />
     <Content Include="Content\Css\Layout\css\style.css" />
-    <Content Include="Content\Css\Layout\img\about.jpg" />
-    <Content Include="Content\Css\Layout\img\apple-touch-icon.png" />
-    <Content Include="Content\Css\Layout\img\chefs-bg.jpg" />
-    <Content Include="Content\Css\Layout\img\chefs\chefs-1.jpg" />
-    <Content Include="Content\Css\Layout\img\chefs\chefs-2.jpg" />
-    <Content Include="Content\Css\Layout\img\chefs\chefs-3.jpg" />
-    <Content Include="Content\Css\Layout\img\coffeeF.jpg" />
-    <Content Include="Content\Css\Layout\img\event-birthday.jpg" />
-    <Content Include="Content\Css\Layout\img\event-custom.jpg" />
-    <Content Include="Content\Css\Layout\img\event-private.jpg" />
-    <Content Include="Content\Css\Layout\img\events-bg.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-1.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-2.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-3.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-4.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-5.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-6.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-7.jpg" />
-    <Content Include="Content\Css\Layout\img\gallery\gallery-8.jpg" />
-    <Content Include="Content\Css\Layout\img\slide\slide-1.jpg" />
-    <Content Include="Content\Css\Layout\img\slide\slide-2.jpg" />
-    <Content Include="Content\Css\Layout\img\slide\slide-3.jpg" />
-    <Content Include="Content\Css\Layout\img\specials-1.jpg" />
-    <Content Include="Content\Css\Layout\img\specials-2.jpg" />
-    <Content Include="Content\Css\Layout\img\specials-3.jpg" />
-    <Content Include="Content\Css\Layout\img\specials-4.jpg" />
-    <Content Include="Content\Css\Layout\img\specials-5.jpg" />
-    <Content Include="Content\Css\Layout\img\testimonials-bg.jpg" />
-    <Content Include="Content\Css\Layout\img\testimonials\testimonials-1.jpg" />
-    <Content Include="Content\Css\Layout\img\testimonials\testimonials-2.jpg" />
-    <Content Include="Content\Css\Layout\img\testimonials\testimonials-3.jpg" />
-    <Content Include="Content\Css\Layout\img\testimonials\testimonials-4.jpg" />
-    <Content Include="Content\Css\Layout\img\testimonials\testimonials-5.jpg" />
-    <Content Include="Content\Css\Layout\js\main.js" />
     <Content Include="Content\Css\Layout\vendor\animate.css\animate.compat.css" />
     <Content Include="Content\Css\Layout\vendor\animate.css\animate.css" />
     <Content Include="Content\Css\Layout\vendor\animate.css\animate.min.css" />
