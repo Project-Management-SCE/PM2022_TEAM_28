@@ -10,8 +10,9 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-						bat "\"${tool '15.0'}\" solution.sln /p:Configuration=Release /p:Platform=\"x86\"
+						bat "\"${tool '15.0'}\" HolyWebi.sln /p:Configuration=Release /p:Platform=\"x86\"
         					} 
     					}
+			}
 			}
 }
