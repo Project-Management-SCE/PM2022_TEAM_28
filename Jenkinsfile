@@ -5,7 +5,7 @@ pipeline {
 					steps{
 						checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
 							  doGenerateSubmoduleConfigurations: false, extensions: [],
-							  submoduleCfg: [], userRemoteConfigs:[[url: 'https://github.com/Project-Management-SCE/PM2022_TEAM_28.git']]])
+							  submoduleCfg: [], userRemoteConfigs:[[credentialsId: '825fc4d4-4161-4170-9587-28a936f82af6',url: 'https://github.com/Project-Management-SCE/PM2022_TEAM_28.git']]])
 					}
 				}
 				stage('Build') {
