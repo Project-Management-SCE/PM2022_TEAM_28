@@ -1,63 +1,79 @@
 ﻿@using HolyWebi.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log inמ";
+    ViewBag.Title = "Log in";
 }
+<link href="~/Content/Css/Login.css" rel="stylesheet" />
+<section class="vh-50 " style="background-color: moccasin;">
+    <div class="container  " >
+        <div class="row d-flex justify-content-center align-items-center h-100 ">
+            <div class="col col-xl-10  ">
+                <div class="card " style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="~/Content/Css/artworks-000118663714-cck69x-t500x500.jpg"
+                                 alt="login form" class="img-fluid" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                        <span class=" h1 fw-bold mb-0 ">
+                                            <img src="~/Content/Css/צילום מסך 2022-04-05 002322.png" class="logo"  />
+                                        </span>
+                                    </div>
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">התחבר לחשבון שלך</h5>
+
+                                    @Html.AntiForgeryToken()
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-outline mb-4">
+
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "הכנס איימל" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-outline mb-3">
+
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "הכנס סיסמה" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <!-- Checkbox -->
+                                        <div class="form-check mb-0">
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+                                        </div>
+                                        @*@Html.ActionLink("שכחת סיסמה?", "ForgotPassword")*@
+
+                                    </div>
+
+                                    <div class="text-center text-lg-start mt-4 pt-2 login_page">
+                                        <input type="submit" value="התחבר" class="btn btn-dark" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+
+                                    </div>
+                                    <p class="small fw-bold mt-2 pt-1 mb-0">
+                                        עדין לא רשום? @Html.ActionLink("הירשם", "Register")
+                                    </p>
+                                }
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+</section>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+
