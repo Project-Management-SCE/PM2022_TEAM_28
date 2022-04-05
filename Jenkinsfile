@@ -11,8 +11,7 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-						bat "\"${tool '15.0'}\" HolyWebi.sln /p:Configuration=Release /p:Platform=\"x86\"
-        					} 
+						stage('App_Build'){ steps{ tool name: 'MsBuild', type: 'msbuild' bat ""${tool 'MsBuild'}"HolyWebi.sln /t:Rebuild /p:Configuration=Release" } }        					} 
     					}
 			
 			}
