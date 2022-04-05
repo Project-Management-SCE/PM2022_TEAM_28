@@ -11,7 +11,7 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-						 tool name: 'MsBuild', type: 'msbuild' bat ""${tool 'MsBuild'}"HolyWebi.sln /t:Rebuild /p:Configuration=Release"  
+    					    bat "\"${tool 'MSBuild'}\" HolyWebi.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=c:\\inetpub\\wwwroot"
 						}        					
     					}
 			
