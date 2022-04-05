@@ -11,7 +11,8 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-						 tool name: 'MsBuild', type: 'msbuild' bat ""${tool 'MsBuild'}"HolyWebi.sln /t:Rebuild /p:Configuration=Release"  }        					} 
+						 tool name: 'MsBuild', type: 'msbuild' bat ""${tool 'MsBuild'}"HolyWebi.sln /t:Rebuild /p:Configuration=Release"  
+						}        					
     					}
 			
 			}
