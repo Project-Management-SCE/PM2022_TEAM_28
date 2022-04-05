@@ -10,11 +10,8 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-						script {
-          						def msbuild = tool name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation'
-         					 	bat "${msbuild} HolyWebi.sln"
-        } 
+						bat "\"${tool '15.0'}\" solution.sln /p:Configuration=Release /p:Platform=\"x86\"
+        					} 
     					}
-				}
 			}
 }
