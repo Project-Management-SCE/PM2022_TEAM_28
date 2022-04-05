@@ -1,27 +1,19 @@
 pipeline {
-  agent any
-    stage('Build') {
-      steps {
-        bat 'HolyWebi build HolyWebi.sln'
-      }
-    }
-    stage('Test') {
-      steps {
-	      bat 'HolyWebi test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover ./HolyWebiTest/HolyWebiTest.csproj --logger "trx;LogFileName=TestResult.trx"'
-        bat 'reportgenerator "-reports:./HolyWebiTest/coverage.opencover.xml" "-targetdir:CoverageReport"'
-	    }     
-    }
-    stage('Publish') {
-      steps {
-        bat 'dotnet publish ./HolyWebi/HolyWebi.csproj -c Release -o C:/JenkinsBuilds/'+env.JOB_NAME+'/'+env.BUILD_NUMBER
-      }
-    }
-  }
-  post { 
-    success {
-      publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './CoverageReport', reportFiles: 'index.htm', reportTitles: "CodeCoverageReport", reportName: "Code Coverage Report", includes: '**/*', escapeUnderscores: true])
-      step([$class: 'MSTestPublisher', testResultsFile:'**/TestResult.trx', failOnError: true, keepLongStdio: true])
-      cleanWs()
-    }
-  }
+			agent any
+			stages {
+				stage('Source'){
+					steps{
+						checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+							  doGenerateSubmoduleConfigurations: false, extensions: [],
+							  submoduleCfg: [], userRemoteConfigs: ])
+					}
+				}
+				stage('Build') {
+    					steps {
+    					    bat "\"${tool 'MSBuild'}\" HolyWebi.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish 
+						/p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release 
+						/p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=c:\\inetpub\\wwwroot"
+    					}
+				}
+			}
 }
