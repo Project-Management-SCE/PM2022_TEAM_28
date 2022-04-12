@@ -1,6 +1,5 @@
 pipeline {
   agent { 
-    label 'win-slave-node'
   }
   stages {
     stage('Build') {
