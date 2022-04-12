@@ -28,8 +28,6 @@ pipeline {
              steps{
                sh 'dotnet publish WebHoly/WebHoly.csproj --configuration Release --no-restore'
              }
-        }
-       
-        }        
+        }    
     }
-}
+
