@@ -1,11 +1,15 @@
-node('win-slave-node') {
-  def msbuild = tool name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation'
-
-  stage('Checkout') {
-    checkout scm
+pipeline {
+  agent { 
+    label 'win-slave-node'
   }
-
-  stage('Build') {
-    bat "${msbuild} WebHoly/WebHoly.sln"
-  }
-}
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          def msbuild = tool name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation'
+          bat "${msbuild} WebHoly/WebHoly.sln"
+        } 
+      } 
+    } 
+  } 
+} 
