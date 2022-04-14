@@ -15,13 +15,11 @@ namespace WebHoly.ViewModels
         public string Phone { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        [Required(ErrorMessage = "חובה לרשום אשראי")]
         [Display(Name = "מספר כרטיס ")]
         public string Last4Digits { get; set; }
         public string TokenNumber { get; set; }
         [Display(Name = "תעודת זהות ")]
 
-        [Required(ErrorMessage = "חובה לרשום תעודת זהות")]
         public string IdentityNumber { get; set; }
 
         [Display(Name = "שם מלא")]
