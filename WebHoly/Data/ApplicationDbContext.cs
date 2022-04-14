@@ -9,8 +9,7 @@ namespace WebHoly.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public string FirstName { get; set; }
-        public string Community { get; set; }
+       
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

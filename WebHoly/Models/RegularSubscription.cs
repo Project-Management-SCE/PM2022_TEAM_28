@@ -15,6 +15,8 @@ namespace WebHoly.Models
         public bool Gender { get; set; }
         public Nullable<int> TopicsOfInterest { get; set; }
         public int Age { get; set; }
+        public string FirstName { get; set; }
+        public string Community { get; set; }
         public virtual IdentityUser User { get; set; }
     }
 }
