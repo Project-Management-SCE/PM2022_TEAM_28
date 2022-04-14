@@ -1,0 +1,148 @@
+﻿@model WebHoly.ViewModels.HolySubscriptionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string error = ViewBag.error;
+
+}
+@if (!string.IsNullOrEmpty(error))
+{
+    @error
+}
+<link href="~/css/Paymentcss.css" rel="stylesheet" />
+
+<h1>הרשמה למשתמשי בית כנסת</h1>
+<hr />
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-6">
+                <div class="card p-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div><div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div><div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Community" class="control-label"></label>
+                        <input asp-for="Community" class="form-control" />
+                        <span asp-validation-for="Community" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-6">
+                <div class="card p-3">
+                    <p class="mb-0 fw-bold h4">שיטות לתשלום</p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card p-3">
+                    <div class="card-body border p-0">
+                        <p> <a class="btn btn-primary w-100 h-100 d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample"> <span class="fw-bold">PayPal</span> <span class="fab fa-cc-paypal"> </span> </a> </p>
+                        <div class="collapse p-3 pt-0" id="collapseExample">
+                            <div class="row">
+                                <div class="col-8">
+                                    <p class="h4 mb-0">סיכום</p>
+                                    <p class="mb-0"><span class="fw-bold"></span><span class="c-green">: מנוי חודשי לבתי כנסת</span></p>
+                                    <p class="mb-0"><span class="fw-bold">מחיר:</span><span class="c-green">: שקלים חדשים</span></p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label asp-for="Last4Digits" class="control-label"></label>
+                                            <input asp-for="Last4Digits" class="form-control" />
+                                            <span asp-validation-for="Last4Digits" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form__div"> <input type="text" class="form-control" placeholder=" "> <label for="" class="form__label">MM / yy</label> </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form__div"> <input type="password" class="form-control" placeholder=" "> <label for="" class="form__label">cvv קוד</label> </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label asp-for="IdentityNumber" class="control-label"></label>
+                                            <input asp-for="IdentityNumber" class="form-control" />
+                                            <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body border p-0">
+                        <p> <a class="btn btn-primary p-2 w-100 h-100 d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample"> <span class="fw-bold">Credit Card</span> <span class=""> <span class="fab fa-cc-amex"></span> <span class="fab fa-cc-mastercard"></span> <span class="fab fa-cc-discover"></span> </span> </a> </p>
+                        <div class="collapse show p-3 pt-0" id="collapseExample">   
+                            <div class="row">
+                                <div class="col-lg-5 mb-lg-0 mb-3">
+                                    <p class="h4 mb-0">סיכום</p>
+                                    <p class="mb-0"><span class="fw-bold"></span><span class="c-green"> מנוי חודשי לבתי כנסת</span></p>
+                                    <p class="mb-0"><span class="fw-bold">מחיר:</span><span class="c-green">199 שקלים חדשים</span></p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label asp-for="Last4Digits" class="control-label"></label>
+                                            <input asp-for="Last4Digits" class="form-control" />
+                                            <span asp-validation-for="Last4Digits" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form__div"> <input type="text" class="form-control" placeholder=" "> <label for="" class="form__label">MM / yy</label> </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form__div"> <input type="password" class="form-control" placeholder=" "> <label for="" class="form__label">cvv קוד</label> </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label asp-for="IdentityNumber" class="control-label"></label>
+                                            <input asp-for="IdentityNumber" class="form-control" />
+                                            <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">הירשם</button>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

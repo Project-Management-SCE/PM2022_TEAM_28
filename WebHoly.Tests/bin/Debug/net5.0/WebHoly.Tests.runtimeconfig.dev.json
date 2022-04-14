@@ -2,7 +2,8 @@
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\bestr\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\bestr\\.nuget\\packages"
+      "C:\\Users\\bestr\\.nuget\\packages",
+      "C:\\Users\\user\\.nuget\\packages"
     ]
   }
 }

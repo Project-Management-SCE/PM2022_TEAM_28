@@ -24,6 +24,8 @@ namespace WebHoly.Models
         public string Last4Digits { get; set; }
         public string TokenNumber { get; set; }
         public string IdentityNumber { get; set; }
+        public string FirstName { get; set; }
+        public string Community { get; set; }
 
         public virtual IdentityUser User { get; set; }
         public virtual ICollection<Payment> Payment { get; set; }
