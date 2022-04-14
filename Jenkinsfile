@@ -30,7 +30,7 @@ pipeline {
          }
        stage('Test: Unit Test'){
            steps {
-                sh 'dotnet test WebHoly.test/WebHoly.Tests.csproj --configuration Release --no-restore'
+                sh 'dotnet test WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
              }
           }
         
