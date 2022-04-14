@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using WebHoly.Data;
 using WebHoly.Models;
+using WebHoly.Service.PayPalHelper;
 using WebHoly.ViewModels;
 
 namespace WebHoly.Controllers
@@ -17,13 +19,14 @@ namespace WebHoly.Controllers
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-
+        public IConfiguration _configuration { get; }
         public HolySubscriptionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, IConfiguration configuration)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _configuration = configuration;
         }
         // GET: HolySubscriptions
         public async Task<IActionResult> Index()
@@ -79,7 +82,7 @@ namespace WebHoly.Controllers
                         FirstName = holySubscription.FirstName,
                         Phone = holySubscription.Phone,
                         UserId = user.Id,
-                        IdentityNumber = holySubscription.IdentityNumber,
+                        IdentityNumber = holySubscription.IdentityNumber!=null? holySubscription.IdentityNumber:"123",
                         Last4Digits = holySubscription.Last4Digits.ToString().PadLeft(4, '0'),
                         TokenNumber = DateTime.Now.ToString("dd:MM:yyyy") + holySubscription.FirstName + holySubscription.IdentityNumber,
                     };
@@ -99,7 +102,7 @@ namespace WebHoly.Controllers
 
                     _context.SaveChanges();
                 }
-                return View();
+                return View("Success");
             }
             ViewBag.error = "שם משתמש כבר קיים ממערכת";
             return View("error");
@@ -192,6 +195,26 @@ namespace WebHoly.Controllers
         private bool HolySubscriptionExists(int id)
         {
             return _context.HolySubscription.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        [Route("checkout")]
+        public async Task<IActionResult> PayPalPayment(HolySubscriptionViewModel model)
+        {
+            TempData["User"] = model;
+            var payPalAPI = new PayPalApi(_configuration);
+            string url = await payPalAPI.GetRedirectURLToPayPal(199, "ILS");
+            return Redirect(url); 
+        }
+        [Route("success")]
+        public async Task<IActionResult> Success([FromQuery(Name="paymentId")] string paymentId,
+            [FromQuery(Name = "PayerID")] string PayerID)
+        {
+            var payPalAPI = new PayPalApi(_configuration);
+            var result = await payPalAPI.exectedPayment(paymentId, PayerID);
+
+            ViewBag.result = result;
+            return RedirectToAction("Create", TempData["User"]);
         }
     }
 }

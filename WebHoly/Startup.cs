@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHoly.Data;
+using WebHoly.ViewModels;
 
 namespace WebHoly
 {
@@ -36,6 +37,7 @@ namespace WebHoly
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.Configure<PayPalViewModel>(Configuration.GetSection("Paypal"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
