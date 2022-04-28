@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model SoulBoardCssType
+
+
+<h1> סגנון תצוגה</h1>
+<form asp-action="CssChange">
+
+    <div class="form-group">
+        <label asp-for="FontSize"></label>
+        <select asp-for="FontSize" class="form-control" asp-items="ViewBag.FontSize"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="CandleType"></label>
+        <select asp-for="CandleType" class="form-control" asp-items="ViewBag.CandleType"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="FontType"></label>
+        <select asp-for="FontType" class="form-control" asp-items="ViewBag.FontType"></select>
+    </div>
+    <div class="form-group " style="margin: 20px 0 20px 0;">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

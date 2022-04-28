@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,7 +12,7 @@ using WebHoly.Data;
 using WebHoly.Models;
 using WebHoly.Service.PayPalHelper;
 using WebHoly.ViewModels;
-
+using WebHoly.Service;
 namespace WebHoly.Controllers
 {
     public class HolySubscriptionsController : Controller
@@ -19,7 +20,11 @@ namespace WebHoly.Controllers
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+
         public IConfiguration _configuration { get; }
+        public HolySubscriptionViewModel UserHoly { get; private set; }
+
+
         public HolySubscriptionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager, IConfiguration configuration)
         {
@@ -66,25 +71,28 @@ namespace WebHoly.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(HolySubscriptionViewModel holySubscription)
+        public async Task<IActionResult> Create(ProductViewModel holySubscription)
         {
+            var objComplex = HttpContext.Session.GetObject<HolySubscriptionViewModel>("UserHoly");
+
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = holySubscription.Email, Email = holySubscription.Email, };
-                var result = await _userManager.CreateAsync(user, holySubscription.Password);
+                var user = new IdentityUser { UserName = objComplex.Email, Email = objComplex.Email, };
+                var result = await _userManager.CreateAsync(user, objComplex.Password);
+
                 if (result.Succeeded)
                 {
                     var Holysub = new HolySubscription
                     {
-                        Community = holySubscription.Community,
-                        Address = holySubscription.Address,
+                        Community = objComplex.Community,
+                        Address = objComplex.Address,
                         CreatedDate = DateTime.Now,
-                        FirstName = holySubscription.FirstName,
-                        Phone = holySubscription.Phone,
+                        FirstName = objComplex.FirstName,
+                        Phone = objComplex.Phone,
                         UserId = user.Id,
-                        IdentityNumber = holySubscription.IdentityNumber!=null? holySubscription.IdentityNumber:"123",
-                        Last4Digits = holySubscription.Last4Digits.ToString().PadLeft(4, '0'),
-                        TokenNumber = DateTime.Now.ToString("dd:MM:yyyy") + holySubscription.FirstName + holySubscription.IdentityNumber,
+                        IdentityNumber = objComplex.IdentityNumber != null ? objComplex.IdentityNumber : "123",
+                        Last4Digits = objComplex.Last4Digits != null ? objComplex.Last4Digits.ToString().PadLeft(4, '0') : "0000",
+                        TokenNumber = DateTime.Now.ToString("dd:MM:yyyy") + objComplex.FirstName + objComplex.IdentityNumber,
                     };
                     _context.HolySubscription.Add(Holysub);
                     _context.SaveChanges();
@@ -102,7 +110,7 @@ namespace WebHoly.Controllers
 
                     _context.SaveChanges();
                 }
-                return View("Success");
+                return View("thanks");
             }
             ViewBag.error = "שם משתמש כבר קיים ממערכת";
             return View("error");
@@ -197,24 +205,85 @@ namespace WebHoly.Controllers
             return _context.HolySubscription.Any(e => e.Id == id);
         }
 
+
+        public IActionResult Payment()
+        {
+            var objComplex = HttpContext.Session.GetObject<HolySubscriptionViewModel>("UserHoly");
+            return View();
+        }
+
         [HttpPost]
         [Route("checkout")]
-        public async Task<IActionResult> PayPalPayment(HolySubscriptionViewModel model)
+        public async Task<IActionResult> PayPalPayment()
         {
-            TempData["User"] = model;
+            var objComplex = HttpContext.Session.GetObject<HolySubscriptionViewModel>("UserHoly");
+
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser { UserName = objComplex.Email, Email = objComplex.Email, };
+                var result = await _userManager.CreateAsync(user, objComplex.Password);
+
+                if (result.Succeeded)
+                {
+                    var Holysub = new HolySubscription
+                    {
+                        Community = objComplex.Community,
+                        Address = objComplex.Address,
+                        CreatedDate = DateTime.Now,
+                        FirstName = objComplex.FirstName,
+                        Phone = objComplex.Phone,
+                        UserId = user.Id,
+                        IdentityNumber = objComplex.IdentityNumber != null ? objComplex.IdentityNumber : "123",
+                        Last4Digits = objComplex.Last4Digits != null ? objComplex.Last4Digits.ToString().PadLeft(4, '0') : "0000",
+                        TokenNumber = DateTime.Now.ToString("dd:MM:yyyy") + objComplex.FirstName + objComplex.IdentityNumber,
+                    };
+                    _context.HolySubscription.Add(Holysub);
+                    _context.SaveChanges();
+
+                    var holyPayment = new Payment
+                    {
+                        Aproved = true,
+                        HolySubscriptionId = Holysub.Id,
+                        ReceptionNumber = 1,//until we will do a recept in sprint 2
+                        PaymentDate = DateTime.Now,
+                        Price = 199,
+
+                    };
+                    _context.Payment.Add(holyPayment);
+
+                    _context.SaveChanges();
+                }
+            }
+            else
+            {
+                ViewBag.error = "שם משתמש כבר קיים ממערכת";
+                return View("error");
+            }
             var payPalAPI = new PayPalApi(_configuration);
             string url = await payPalAPI.GetRedirectURLToPayPal(199, "ILS");
-            return Redirect(url); 
+            return Redirect(url);
+        }
+        [HttpPost]
+        public IActionResult PaymentSave(HolySubscriptionViewModel holySubscription)
+        {
+            HttpContext.Session.SetObject("UserHoly", holySubscription);
+            return RedirectToAction("Payment");
         }
         [Route("success")]
-        public async Task<IActionResult> Success([FromQuery(Name="paymentId")] string paymentId,
-            [FromQuery(Name = "PayerID")] string PayerID)
+        public async Task<IActionResult> Success([FromQuery(Name = "paymentId")] string paymentId, [FromQuery(Name = "accessToken")] string accessToken,
+             [FromQuery(Name = "PayerID")] string PayerID)
         {
             var payPalAPI = new PayPalApi(_configuration);
             var result = await payPalAPI.exectedPayment(paymentId, PayerID);
-
             ViewBag.result = result;
-            return RedirectToAction("Create", TempData["User"]);
+            return View("Success");
+        }
+        [Route("cancel")]
+        public async Task<IActionResult> Cancel([FromQuery(Name = "accessToken")] string accessToken)
+        {
+
+            return RedirectToAction("Create");
         }
     }
 }
+//123@aA123

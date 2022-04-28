@@ -33,11 +33,20 @@ namespace WebHoly
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();
+
+            services.AddControllersWithViews();
             services.AddHttpClient();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.Configure<PayPalViewModel>(Configuration.GetSection("Paypal"));
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
+            services.AddMvc().AddControllersAsServices();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +56,8 @@ namespace WebHoly
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+                //app.UseExceptionHandler("/Home/Error");
+
             }
             else
             {
@@ -54,13 +65,15 @@ namespace WebHoly
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseHttpsRedirection();
+
+            app.UseSession();
+
 
             app.UseEndpoints(endpoints =>
             {

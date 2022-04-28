@@ -11,6 +11,8 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("WebHoly", "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly", "WebHoly.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebHoly.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

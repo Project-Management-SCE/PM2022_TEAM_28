@@ -26,6 +26,7 @@ namespace WebHoly.Models
         public string IdentityNumber { get; set; }
         public string FirstName { get; set; }
         public string Community { get; set; }
+        public string City { get; set; }
 
         public virtual IdentityUser User { get; set; }
         public virtual ICollection<Payment> Payment { get; set; }

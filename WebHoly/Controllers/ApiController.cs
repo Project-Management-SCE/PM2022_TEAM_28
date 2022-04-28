@@ -28,12 +28,12 @@ namespace WebHoly.Controllers
         public IActionResult ShabbatApiHebcal(string City)
         {
 
-            //https://www.hebcal.com/home/195/jewish-calendar-rest-api#lg
-            var Allcitys = citys();
-            if (Allcitys.ContainsKey(City))
-            {
-                ViewBag.city = Allcitys.Values;
-            }
+            ////https://www.hebcal.com/home/195/jewish-calendar-rest-api#lg
+            //var Allcitys = citys();
+            //if (Allcitys.ContainsKey(City))
+            //{
+            //    ViewBag.city = Allcitys.Values;
+            //}
 
             return View();
 
@@ -56,43 +56,60 @@ namespace WebHoly.Controllers
             return View();
         }
 
-        public IActionResult TodayTimeHebcal(string cityId)
+        public TodayTimeHebcalViewModel TodayTimeHebcal(string cityName)
         {
-            //https://www.hebcal.com/zmanim?cfg=json&geonameid=3448439&date=2021-03-23 זמני היום 
-
-            TodayTimeHebcalViewModel model = new TodayTimeHebcalViewModel
+            //https://www.hebcal.com/zmanim?cfg=json&geonameid=3448439&date=2022-03-23 זמני היום 
+            TodayTimeHebcalViewModel TodayTimeHebcalModel;
+            string cityId = citys(cityName);
+            if(cityId !=null)
             {
-                TodayDate = DateTime.Now,
-                CityId = cityId
-            };
-            //using a java scrip and load the info from Hebcal Api
-            return View(model);
+                TodayTimeHebcalModel = new TodayTimeHebcalViewModel
+                {
+                    TodayDate = DateTime.Now,
+                    CityId = cityId
+                };
+                //using a java scrip and load the info from Hebcal Api
+            }
+            else
+            {
+                TodayTimeHebcalModel = new TodayTimeHebcalViewModel
+                {
+                    TodayDate = DateTime.Now,
+                    CityId = "281184"
+                };
+            }
+            return TodayTimeHebcalModel;
         }
 
-        public Dictionary<string, string> citys()
+        public string citys(string cityName)
         {
             Dictionary<string, string> citys = new Dictionary<string, string>();
-            citys.Add("IL - Ashdod", "295629");
-            citys.Add("IL - Ashkelon", "295620");
-            citys.Add("IL - Bat Yam", "295548");
-            citys.Add("IL - Be'er Sheva", "295530");
-            citys.Add("IL - Beit Shemesh", "295432");
-            citys.Add("IL - Bnei Brak", "295514");
-            citys.Add("IL - Eilat", "295277");
-            citys.Add("IL - Hadera", "294946");
-            citys.Add("IL - Haifa", "294801");
-            citys.Add("IL - Herzliya", "294778");
-            citys.Add("IL - Holon", "294751");
-            citys.Add("IL - Jerusalem", "281184");
-            citys.Add("IL - Kfar Saba", "294514");
-            citys.Add("IL - Lod", "294421");
-            citys.Add("IL - Modiin", "282926");
-            citys.Add("IL - Nazareth", "294098");
-            citys.Add("IL - Netanya", "294071");
-            citys.Add("IL - Tel Aviv", "293397");
-            citys.Add("IL - Tiberias", "293322");
-            citys.Add("IL - Petach Tikvah", "293918");
-            return citys;
+            citys.Add("אשדוד", "295629");
+            citys.Add("אשקלון", "295620");
+            citys.Add("בת ים", "295548");
+            citys.Add("באר שבע", "295530");
+            citys.Add("בית שמש", "295432");
+            citys.Add("בני ברק", "295514");
+            citys.Add("אילת", "295277");
+            citys.Add("חדרה", "294946");
+            citys.Add("חיפה", "294801");
+            citys.Add("הרצליה", "294778");
+            citys.Add("חולון", "294751");
+            citys.Add("ירשולים", "281184");
+            citys.Add("כפר סבא", "294514");
+            citys.Add("לוד", "294421");
+            citys.Add("מודיעין", "282926");
+            citys.Add("נצרת", "294098");
+            citys.Add("נתניה", "294071");
+            citys.Add("תל אביב", "293397");
+            citys.Add("טבריה", "293322");
+            citys.Add("פתח תקווה", "293918");
+           foreach(var item in citys)
+            {
+                if (cityName == item.Key)
+                    return item.Value;
+            }
+            return null;
         }
 
         public IActionResult BiblebookApi(string book)

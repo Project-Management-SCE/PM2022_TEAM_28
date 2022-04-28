@@ -89,7 +89,7 @@ namespace WebHoly.Controllers
                     _context.RegularSubscription.Add(regulerSub);
                     _context.SaveChanges();
                 }
-                return View();
+                return RedirectToAction("thanks", "Home");
             }
             return View("error");
 

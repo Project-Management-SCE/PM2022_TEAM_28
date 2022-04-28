@@ -16,7 +16,7 @@ namespace WebHoly.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.15")
+                .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -253,6 +253,9 @@ namespace WebHoly.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Community")
                         .HasColumnType("nvarchar(max)");
 
@@ -427,6 +430,35 @@ namespace WebHoly.Data.Migrations
                     b.ToTable("SoulBoard");
                 });
 
+            modelBuilder.Entity("WebHoly.Models.SoulBoardCssType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CandleType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FontSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FontType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HolySubscriptionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HolySubscriptionId");
+
+                    b.ToTable("SoulBoardCssTypes");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -522,6 +554,17 @@ namespace WebHoly.Data.Migrations
                 {
                     b.HasOne("WebHoly.Models.HolySubscription", "HolySubscription")
                         .WithMany("SoulBoard")
+                        .HasForeignKey("HolySubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HolySubscription");
+                });
+
+            modelBuilder.Entity("WebHoly.Models.SoulBoardCssType", b =>
+                {
+                    b.HasOne("WebHoly.Models.HolySubscription", "HolySubscription")
+                        .WithMany()
                         .HasForeignKey("HolySubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -14,8 +14,8 @@
 
 <h1>הרשמה למשתמשי בית כנסת</h1>
 <hr />
+<form method="post" enctype="multipart/form-data" asp-action="PaymentSave">
 
-<form method="post">
     <div class="container">
         <div class="row">
             <div class="col-12 mt-6">
@@ -59,66 +59,52 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mt-6">
-                <div class="card p-3">
-                    <p class="mb-0 fw-bold h4">שיטות לתשלום</p>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="card p-3">
-                    <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-                        <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Credit Card </a> </li>
-                        <li class="nav-item"> <a data-toggle="pill" href="#paypal" class="nav-link "> <i class="fab fa-paypal mr-2"></i> Paypal </a> </li>
+
+    <button type="submit" class="btn btn-primary">מעבר לתשלום</button>
+</form>
+<!-- Modal -->
+<!--<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                <div class="tabs mt-3">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"> <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> <img src="https://i.imgur.com/sB4jftM.png" width="80"> </a> </li>
+                        <li class="nav-item" role="presentation"> <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> <img src="https://i.imgur.com/yK7EDD1.png" width="80"> </a> </li>
                     </ul>
-                    <div class="card-body border p-0">
-
-                        <div id="credit-card" class="tab-pane fade show active pt-3">
-
-                            <div class="row">
-                                <div class="col-8">
-                                    <p class="h4 mb-0">סיכום</p>
-                                    <p class="mb-0"><span class="fw-bold"></span><span class="c-green">: מנוי חודשי לבתי כנסת</span></p>
-                                    <p class="mb-0"><span class="fw-bold">מחיר:</span><span class="c-green">: שקלים חדשים</span></p>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                            <div class="mt-4 mx-4">
+                                <div class="text-center">
+                                    <h5>אשראי</h5>
                                 </div>
-                                <div class="col-lg-7">
-                                    <div class="row">
-                                        <div class="col-12">
 
-                                            <label asp-for="Last4Digits" class="control-label"></label>
-                                            <input asp-for="Last4Digits" class="form-control" />
-                                            <span asp-validation-for="Last4Digits" class="text-danger"></span>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form__div"> <input type="text" class="form-control" placeholder=" "> <label for="" class="form__label">MM / yy</label> </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form__div"> <input type="password" class="form-control" placeholder=" "> <label for="" class="form__label">cvv קוד</label> </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <label asp-for="IdentityNumber" class="control-label"></label>
-                                            <input asp-for="IdentityNumber" class="form-control" />
-                                            <span asp-validation-for="IdentityNumber" class="text-danger"></span>
-                                        </div>
+                                <div class="form mt-3">
 
+                                    <label asp-for="Last4Digits" class="control-label"></label>
+                                    <input asp-for="Last4Digits" class="form-control" />
+                                    <span asp-validation-for="Last4Digits" class="text-danger"></span>
+                                    <div class="d-flex flex-row">
+                                        <div class="inputbox"> <input type="text" name="name" min="1" max="999" class="form-control" required="required"> <span>MM / yy</span> </div>
+                                        <div class="inputbox"> <input type="text" name="name" min="1" max="999" class="form-control" required="required"> <span>CVV קוד</span> </div>
                                     </div>
+                                    <label asp-for="IdentityNumber" class="control-label"></label>
+                                    <input asp-for="IdentityNumber" class="form-control" />
+                                    <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="pay px-5">
+                                    <form method="post"  asp-action="Create">
+                                        <div class="pay px-5"> <button class="btn btn-primary btn-block"> מעבר לתשלום</button> </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body border p-0">
-                        <div id="paypal" class="tab-pane fade pt-3">
-                            <h6 class="pb-2">Select your paypal account type</h6>
-                            <div class="row">
-                                <div class="col-lg-5 mb-lg-0 mb-3">
-                                    <p class="h4 mb-0">סיכום</p>
-                                    <p class="mb-0"><span class="fw-bold"></span><span class="c-green"> מנוי חודשי לבתי כנסת</span></p>
-                                    <p class="mb-0"><span class="fw-bold">מחיר:</span><span class="c-green">199 שקלים חדשים</span></p>
-                                </div>
-                                <form method="post" asp-controller="HolySubscriptions" asp-action="PayPalPayment">
-                                <input type="hidden" name="total" value="199" />
-                                <input type="submit" name="checkout" />
+                        <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
+                            <div class="px-5 mt-5">
+                                <form method="post" enctype="multipart/form-data"  asp-action="PayPalPayment">
+                                    <div class="pay px-5"> <button class="btn btn-primary btn-block"> מעבר לPaypal</button> </div>
                                 </form>
                             </div>
                         </div>
@@ -127,43 +113,111 @@
             </div>
         </div>
     </div>
-
-<button type="submit" class="btn btn-primary">הירשם</button>
-</form>
-
-
+</div>-->
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
 <style>
-    body {
-        background: #f5f5f5
+
+
+    .launch {
+        height: 50px
     }
 
-    .rounded {
-        border-radius: 1rem
+    .close {
+        font-size: 21px;
+        cursor: pointer
     }
 
-    .nav-pills .nav-link {
-        color: #555
+    .modal-body {
+        height: 500px
     }
 
-        .nav-pills .nav-link.active {
-            color: white
+
+    .nav-tabs .nav-link.active {
+        color: #495057;
+        background-color: #fff;
+        border-color: #ffffff #ffffff #fff;
+        border-top: 3px solid blue !important
+    }
+
+    .nav-tabs .nav-link {
+        margin-bottom: -1px;
+        border: 1px solid transparent;
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+        border-top: 3px solid #eee;
+        font-size: 20px
+    }
+
+        .nav-tabs .nav-link:hover {
+            border-color: #e9ecef #ffffff #ffffff
         }
 
-    input[type="radio"] {
-        margin-right: 5px
+    .nav-tabs {
+        display: table !important;
+        width: 100%
     }
 
-    .bold {
-        font-weight: bold
+    .nav-item {
+        display: table-cell
+    }
+
+    .form-control {
+        border-bottom: 1px solid #eee !important;
+        border: none;
+        font-weight: 600
+    }
+
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #8bbafe;
+            outline: 0;
+            box-shadow: none
+        }
+
+    .inputbox {
+        position: relative;
+        margin-bottom: 20px;
+        width: 100%
+    }
+
+        .inputbox span {
+            position: absolute;
+            top: 7px;
+            left: 11px;
+            transition: 0.5s
+        }
+
+        .inputbox i {
+            position: absolute;
+            top: 13px;
+            right: 8px;
+            transition: 0.5s;
+            color: #3F51B5
+        }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0
+    }
+
+    .inputbox input:focus ~ span {
+        transform: translateX(-0px) translateY(-15px);
+        font-size: 12px
+    }
+
+    .inputbox input:valid ~ span {
+        transform: translateX(-0px) translateY(-15px);
+        font-size: 12px
+    }
+
+    .pay button {
+        height: 47px;
+        border-radius: 37px
     }
 </style>
 
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
