@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebHoly.ViewModels
 {
-    public class TodayTimeHebcalViewModel
+    public class todaytimeApiviewModel
     {
         public DateTime TodayDate { get; set; }
         public string CityId { get; set; }

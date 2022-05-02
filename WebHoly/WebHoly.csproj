@@ -6,6 +6,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Views\Api\HebrewdatesHebcal.cshtml" />
+    <None Include="Views\Api\Index.cshtml" />
+    <None Include="Views\Api\JewishCalendarHebcal.cshtml" />
+    <None Include="Views\Api\ShabbatTimesHebcal.cshtml" />
+    <None Include="Views\HolySubscriptions\Create.cshtml" />
+    <None Include="Views\HolySubscriptions\Delete.cshtml" />
+    <None Include="Views\HolySubscriptions\Details.cshtml" />
+    <None Include="Views\HolySubscriptions\Edit.cshtml" />
+    <None Include="Views\HolySubscriptions\Index.cshtml" />
+    <None Include="Views\HolySubscriptions\Payment.cshtml" />
+    <None Include="Views\HolySubscriptions\PayPalPayment.cshtml" />
+    <None Include="Views\HolySubscriptions\Success.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Home\Thanks.cshtml" />
+    <None Include="Views\RegularSubscriptions\Create.cshtml" />
+    <None Include="Views\RegularSubscriptions\Delete.cshtml" />
+    <None Include="Views\RegularSubscriptions\Details.cshtml" />
+    <None Include="Views\RegularSubscriptions\Edit.cshtml" />
+    <None Include="Views\RegularSubscriptions\Index.cshtml" />
+    <None Include="Views\Screen\FourthScreen.cshtml" />
+    <None Include="Views\Screen\Index.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\SoulBoards\Create.cshtml" />
+    <None Include="Views\SoulBoards\CssChange.cshtml" />
+    <None Include="Views\SoulBoards\Delete.cshtml" />
+    <None Include="Views\SoulBoards\Details.cshtml" />
+    <None Include="Views\SoulBoards\Edit.cshtml" />
+    <None Include="Views\SoulBoards\Index.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.17.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.8" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.8" />

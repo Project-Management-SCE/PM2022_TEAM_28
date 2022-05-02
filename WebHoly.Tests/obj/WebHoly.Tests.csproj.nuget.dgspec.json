@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {}
+    "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {
+    "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
         "projectName": "WebHoly.Tests",
-        "projectPath": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+        "projectPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,8 +31,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
-                "projectPath": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
+              "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+                "projectPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
               }
             }
           }
@@ -127,14 +127,14 @@
         }
       }
     },
-    "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+    "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
         "projectName": "WebHoly",
-        "projectPath": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
+        "projectPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\obj\\",
+        "outputPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

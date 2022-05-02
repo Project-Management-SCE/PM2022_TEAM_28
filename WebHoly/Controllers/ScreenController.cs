@@ -25,15 +25,28 @@ namespace WebHoly.Controllers
             return View();
         }
 
-        public IActionResult FourthScreen()
+        public async Task<IActionResult> FourthScreen()
         {
-            var user = HttpContext.User.Identity.Name;
-            if(user != null)
+                var userName = HttpContext.User.Identity.Name;
+            if(userName != null)
             {
-                
-                //var city = _context.HolySubscription.Where(x => x.UserId == user.id).select(s => s.city);
-                TodayTimeHebcalViewModel x = _apiController.TodayTimeHebcal("באר שבע");
-                return View();
+                var user =  _context.Users.Where(x => x.Email == userName).Select(s => s.Id).FirstOrDefault();
+                var Holyuser =  _context.HolySubscription.Where(x => x.UserId == user).FirstOrDefault();
+                var x = _apiController.TodayTimeHebcal(Holyuser.City);
+                var todayTime = await _apiController.TodayTimeAsync(x.CityId,x.TodayDate);
+                var hebrewDate = await _apiController.HebrewDate();
+                if (todayTime != null&& hebrewDate != null)
+                {
+                    var allTime = new AllTimeViewModel()
+                    {
+                        Times = todayTime,
+                        HebrewDate = hebrewDate,
+                         SinagugName = Holyuser.FirstName != null ? Holyuser.FirstName : ""
+                        
+                    };
+
+                    return View(allTime);
+                }
             }
             return View("index");
         }

@@ -14,8 +14,11 @@ namespace WebHoly.Controllers
     public class ApiController : Controller
     {
         private readonly IHttpClientFactory _clientFactory;
-        public IEnumerable<MidrasViewModel> midras { get; set; }
-        const string BASE_URL = "https://www.sefaria.org/";
+        public IEnumerable<MidrasViewModel> Midras { get; set; }
+        public TimesViewModel TodayTime { get; set; }
+        public HebrewDateViewModel hebrewDate { get; set; }
+        const string BASE_URLSefaria = "https://www.sefaria.org/";
+        const string BASE_URLHebcal = "https://www.hebcal.com/";
 
         public ApiController(IHttpClientFactory clientFactory)
         {
@@ -56,14 +59,13 @@ namespace WebHoly.Controllers
             return View();
         }
 
-        public TodayTimeHebcalViewModel TodayTimeHebcal(string cityName)
+        public todaytimeApiviewModel TodayTimeHebcal(string cityName)
         {
-            //https://www.hebcal.com/zmanim?cfg=json&geonameid=3448439&date=2022-03-23 זמני היום 
-            TodayTimeHebcalViewModel TodayTimeHebcalModel;
+            todaytimeApiviewModel TodayTimeHebcalModel;
             string cityId = citys(cityName);
-            if(cityId !=null)
+            if (cityId != null)
             {
-                TodayTimeHebcalModel = new TodayTimeHebcalViewModel
+                TodayTimeHebcalModel = new todaytimeApiviewModel
                 {
                     TodayDate = DateTime.Now,
                     CityId = cityId
@@ -72,13 +74,62 @@ namespace WebHoly.Controllers
             }
             else
             {
-                TodayTimeHebcalModel = new TodayTimeHebcalViewModel
+                TodayTimeHebcalModel = new todaytimeApiviewModel
                 {
                     TodayDate = DateTime.Now,
                     CityId = "281184"
                 };
             }
             return TodayTimeHebcalModel;
+        }
+
+        public async Task<TimesViewModel> TodayTimeAsync(string cityId, DateTime date)
+        {
+            var todayDate = date.ToString("yyyy-MM-dd");
+            //https://www.hebcal.com/zmanim?cfg=json&geonameid=3448439&date=2022-03-23 זמני היום 
+            using (var client = new HttpClient())
+            {
+                var message = new HttpRequestMessage();
+                message.Method = HttpMethod.Get;
+                message.RequestUri = new Uri($"{BASE_URLHebcal}zmanim?cfg=json&geonameid={cityId}&date={todayDate}");
+                message.Headers.Add("Accept", "application/json");
+                var clients = _clientFactory.CreateClient();
+
+                var response = await client.SendAsync(message);
+                if (response.IsSuccessStatusCode)
+                {
+                    var readjob = await response.Content.ReadAsStreamAsync();
+
+                    TodayTime = await JsonSerializer.DeserializeAsync<TimesViewModel>(readjob);
+                    //var TodayTimes = await JsonSerializer.DeserializeAsync<dynamic>(readjob);
+
+                }
+
+                return TodayTime;
+            }
+        }
+        public async Task<HebrewDateViewModel> HebrewDate()
+        {
+            //https://www.hebcal.com/converter?cfg=json&gy=2011&gm=6&gd=2&g2h=1 תאריך עברי
+            using (var client = new HttpClient())
+            {
+                var message = new HttpRequestMessage();
+                message.Method = HttpMethod.Get;
+                message.RequestUri = new Uri($"{BASE_URLHebcal}converter?cfg=json&g2h=1&gs=on");
+                message.Headers.Add("Accept", "application/json");
+                var clients = _clientFactory.CreateClient();
+
+                var response = await client.SendAsync(message);
+                if (response.IsSuccessStatusCode)
+                {
+                    var readjob = await response.Content.ReadAsStreamAsync();
+
+                    hebrewDate = await JsonSerializer.DeserializeAsync<HebrewDateViewModel>(readjob);
+
+                }
+
+                return hebrewDate;
+            }
         }
 
         public string citys(string cityName)
@@ -104,7 +155,7 @@ namespace WebHoly.Controllers
             citys.Add("תל אביב", "293397");
             citys.Add("טבריה", "293322");
             citys.Add("פתח תקווה", "293918");
-           foreach(var item in citys)
+            foreach (var item in citys)
             {
                 if (cityName == item.Key)
                     return item.Value;
@@ -132,12 +183,11 @@ namespace WebHoly.Controllers
         }
         public async Task<IActionResult> MidrasSefariaApi(string book, int sChapter, int eChapter)
         {
-
             using (var client = new HttpClient())
             {
                 var message = new HttpRequestMessage();
-                message.Method = HttpMethod.Get; 
-                message.RequestUri = new Uri($"{BASE_URL}api/links/${book}.${sChapter}.${eChapter}");
+                message.Method = HttpMethod.Get;
+                message.RequestUri = new Uri($"{BASE_URLSefaria}api/links/${book}.${sChapter}.${eChapter}");
                 message.Headers.Add("Accept", "application/json");
                 var clients = _clientFactory.CreateClient();
 
@@ -146,15 +196,15 @@ namespace WebHoly.Controllers
                 {
                     var readjob = await response.Content.ReadAsStreamAsync();
 
-                    midras = await JsonSerializer.DeserializeAsync <IEnumerable<MidrasViewModel>>(readjob);
+                    Midras = await JsonSerializer.DeserializeAsync<IEnumerable<MidrasViewModel>>(readjob);
                 }
                 else
                 {
-                    midras = Array.Empty<MidrasViewModel>();
+                    Midras = Array.Empty<MidrasViewModel>();
                 }
             }
 
-            return View(midras);
+            return View(Midras);
         }
     }
 }
