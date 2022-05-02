@@ -1,0 +1,43 @@
+﻿@model WebHoly.Models.SoulBoard
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>הוספת שם  </h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfDeathForeign" class="control-label"></label>
+                <input asp-for="DateOfDeathForeign" class="form-control" />
+                <span asp-validation-for="DateOfDeathForeign" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfDeathHebrew" class="control-label"></label>
+                <input asp-for="DateOfDeathHebrew" class="form-control" />
+                <span asp-validation-for="DateOfDeathHebrew" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group " style="margin: 20px 0 20px 0;">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

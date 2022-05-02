@@ -1,6 +1,7 @@
-﻿@page
+﻿@page "/login"
 @model LoginModel
-
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Log in";
 }
@@ -48,12 +49,12 @@
                                         <input type="submit" value="התחבר" class="btn btn-dark" style="padding-left: 2.5rem; padding-right: 2.5rem;">
 
                                     </div>
-                                        <p class="small fw-bold mt-2 pt-1 mb-0">
-                                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> עדין לא רשום?</a>
-                                        </p>
+                                    <p class="small fw-bold mt-2 pt-1 mb-0">
+                                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> עדין לא רשום?</a>
+                                    </p>
                                 </form>
 
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>

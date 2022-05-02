@@ -1,0 +1,90 @@
+﻿@model WebHoly.ViewModels.SoulBoardVIewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container soul">
+
+    <h1> נפטרי בית הכנסת</h1>
+    <p>
+        <a asp-action="Create">הוספת אדם</a>
+    </p>
+    <p>
+        <a asp-action="CssChange">שינוי עיצוב</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    שם הנפטר
+                </th>
+                <th>
+                    תאריך לועזי
+                </th>
+                <th>
+                    תאריך עברי
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.SoulBoardZero)
+            {
+                @foreach (var item in Model.SoulBoard)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfDeathForeign)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfDeathHebrew)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+<style>
+    body {
+        background-image: url('../img/SoulPicurte/@Model.CandleType');
+        background-size: 1500px 1000px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-family:@Model.FontType;
+        font-size : @Model.FontSize;
+    }
+    .table {
+        color: #135ca5;
+    }
+
+    thead {
+    }
+
+    tr {
+        margin-left: 50px;
+    }
+
+    td {
+        color: #e4b1a5;
+    }
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        color: #135ca5;
+
+
+    }
+
+
+</style>

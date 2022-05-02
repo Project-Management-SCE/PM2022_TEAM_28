@@ -1,0 +1,67 @@
+﻿@model WebHoly.ViewModels.RegularSubscriptionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>הרשמה</h1>
+
+<link href="~/css/Paymentcss.css" rel="stylesheet" />
+<hr />
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-6">
+                <div class="card p-3">
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group drops">
+                        @Html.DropDownListFor(x => x.Gender, (IEnumerable<SelectListItem>)ViewBag.Sex, "מגדר", htmlAttributes: new { @class = "control-label col-md-10", id = "ddl_sex" })
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Community"></label>
+                        <input asp-for="Community" class="form-control" />
+                        <span asp-validation-for="Community" class="text-danger"></span>
+                    </div><div class="form-group">
+                        <label asp-for="Age"></label>
+                        <input asp-for="Age" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">הירשם</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

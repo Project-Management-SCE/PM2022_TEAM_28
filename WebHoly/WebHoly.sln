@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebHoly", "WebHoly.csproj", "{42559380-6989-4F68-B889-9EF387B7E892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHoly.Tests", "..\WebHoly.Tests\WebHoly.Tests.csproj", "{3791834A-9236-4264-8F88-BDA7D3AE984F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebHoly.Tests", "..\WebHoly.Tests\WebHoly.Tests.csproj", "{3791834A-9236-4264-8F88-BDA7D3AE984F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

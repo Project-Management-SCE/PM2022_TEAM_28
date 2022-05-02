@@ -9,8 +9,7 @@ namespace WebHoly.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public string FirstName { get; set; }
-        public string Community { get; set; }
+       
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -32,5 +31,8 @@ namespace WebHoly.Data
         public virtual DbSet<Mails> Mails { get; set; }
         public virtual DbSet<PrayerTimes> PrayerTimes { get; set; }
         public virtual DbSet<SoulBoard> SoulBoard { get; set; }
+        public virtual DbSet<SoulBoardCssType> SoulBoardCssTypes { get; set; }
+
+
     }
 }
