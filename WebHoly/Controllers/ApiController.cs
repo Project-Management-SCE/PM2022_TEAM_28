@@ -16,6 +16,7 @@ namespace WebHoly.Controllers
         private readonly IHttpClientFactory _clientFactory;
         public IEnumerable<MidrasViewModel> Midras { get; set; }
         public TimesViewModel TodayTime { get; set; }
+        public JewishCalenderViewModel jewishCalender { get; set; }
         public HebrewDateViewModel hebrewDate { get; set; }
         const string BASE_URLSefaria = "https://www.sefaria.org/";
         const string BASE_URLHebcal = "https://www.hebcal.com/";
@@ -162,6 +163,33 @@ namespace WebHoly.Controllers
             }
             return null;
         }
+
+        public async Task<JewishCalenderViewModel> JewishCalendarAsync(string cityId, DateTime date)
+        {
+            //https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&M=on&s=on
+            var todayDate = date.Month;
+            using (var  client = new HttpClient())
+            {   
+                var message = new HttpRequestMessage();
+                message.Method = HttpMethod.Get;
+                message.RequestUri = new Uri($"{BASE_URLHebcal}hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month={todayDate}&ss=on&mf=on&c=on&geo=geoname&geonameid={cityId}&M=on&s=on");
+                message.Headers.Add("Accept", "application/json");
+                var clients = _clientFactory.CreateClient();
+
+                var response = await client.SendAsync(message);
+                if (response.IsSuccessStatusCode)
+                {
+                    var readjob = await response.Content.ReadAsStreamAsync();
+
+                    jewishCalender = await JsonSerializer.DeserializeAsync<JewishCalenderViewModel>(readjob);
+                    //var jewishCalender = await JsonSerializer.DeserializeAsync<dynamic>(readjob);
+
+                }
+
+                return jewishCalender;
+            }
+        }
+
 
         public IActionResult BiblebookApi(string book)
         {

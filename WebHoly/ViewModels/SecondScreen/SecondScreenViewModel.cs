@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebHoly.ViewModels
+namespace WebHoly.ViewModels.SecondScreen
 {
-    public class AllTimeViewModel
+    public class SecondScreenViewModel
     {
-        public TimesViewModel Times { get; set; }
+        public JewishCalenderViewModel JewishCalender { get; set; }
         public HebrewDateViewModel HebrewDate { get; set; }
-
         public string SinagugName { get; set; }
-
     }
 }

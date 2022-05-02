@@ -17,12 +17,17 @@ namespace WebHoly.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, InputModel inputModel)
+        public LoginModel(SignInManager<IdentityUser> signInManager,
+            ILogger<LoginModel> logger,
+            UserManager<IdentityUser> userManager)
         {
+            _userManager = userManager;
             _signInManager = signInManager;
-            Input = inputModel;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -38,7 +43,7 @@ namespace WebHoly.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Username/Email")]
+            [Display(Name = "כתובת מייל")]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -67,6 +72,7 @@ namespace WebHoly.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
         }
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -80,6 +86,7 @@ namespace WebHoly.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -88,6 +95,7 @@ namespace WebHoly.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
+                    _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
@@ -96,30 +104,9 @@ namespace WebHoly.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-            return Page();
-        }
-        public async Task<IActionResult> Login(LoginModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _signInManager.PasswordSignInAsync(model.Input.Email,
-                   model.Input.Password, model.Input.RememberMe, false);
 
-                if (result.Succeeded)
-                {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-            }
-            ModelState.AddModelError("", "Invalid login attempt");
-            return Page();
             // If we got this far, something failed, redisplay form
+            return Page();
         }
     }
 }

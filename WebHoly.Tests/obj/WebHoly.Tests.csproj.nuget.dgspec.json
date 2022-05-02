@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {}
+    "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {
+    "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
         "projectName": "WebHoly.Tests",
-        "projectPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
+        "projectPath": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+        "packagesPath": "C:\\Users\\bestr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bestr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
-                "projectPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
+              "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+                "projectPath": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
               }
             }
           }
@@ -123,24 +120,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+    "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
+        "projectUniqueName": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
         "projectName": "WebHoly",
-        "projectPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\obj\\",
+        "projectPath": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
+        "packagesPath": "C:\\Users\\bestr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bestr\\Source\\Repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bestr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -231,12 +225,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.13, 5.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -245,7 +233,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

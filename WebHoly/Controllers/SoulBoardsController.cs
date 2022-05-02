@@ -79,7 +79,6 @@ namespace WebHoly.Controllers
             {
                 return NotFound();
             }
-
             return View(soulBoard);
         }
 
@@ -95,13 +94,21 @@ namespace WebHoly.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DateOfDeathForeign,DateOfDeathHebrew,HolySubscriptionId")] SoulBoard soulBoard)
+        public async Task<IActionResult> Create( SoulBoard soulBoard)
         {
-            if (ModelState.IsValid)
+            var userName = HttpContext.User.Identity.Name;
+            if (userName != null)
             {
-                _context.Add(soulBoard);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var user = _context.Users.Where(x => x.Email == userName).Select(s => s.Id).FirstOrDefault();
+                var Holyuser = _context.HolySubscription.Where(x => x.UserId == user).Select(s => s.Id).FirstOrDefault();
+                soulBoard.HolySubscriptionId = Holyuser;
+                if (ModelState.IsValid)
+                {
+
+                    _context.Add(soulBoard);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             ViewData["HolySubscriptionId"] = new SelectList(_context.HolySubscription, "Id", "Id", soulBoard.HolySubscriptionId);
             return View(soulBoard);

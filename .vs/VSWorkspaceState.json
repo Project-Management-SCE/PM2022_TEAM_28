@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebHoly",
+    "\\WebHoly\\Controllers",
+    "\\WebHoly\\Views",
+    "\\WebHoly\\Views\\Screen",
+    "\\WebHoly\\Views\\Shared"
   ],
-  "SelectedNode": "\\WebHoly.sln",
+  "SelectedNode": "\\WebHoly\\WebHoly.sln",
   "PreviewInSolutionExplorer": false
 }

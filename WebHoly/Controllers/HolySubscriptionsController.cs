@@ -93,6 +93,7 @@ namespace WebHoly.Controllers
                         IdentityNumber = objComplex.IdentityNumber != null ? objComplex.IdentityNumber : "123",
                         Last4Digits = objComplex.Last4Digits != null ? objComplex.Last4Digits.ToString().PadLeft(4, '0') : "0000",
                         TokenNumber = DateTime.Now.ToString("dd:MM:yyyy") + objComplex.FirstName + objComplex.IdentityNumber,
+                        City = objComplex.City
                     };
                     _context.HolySubscription.Add(Holysub);
                     _context.SaveChanges();
@@ -110,7 +111,7 @@ namespace WebHoly.Controllers
 
                     _context.SaveChanges();
                 }
-                return View("thanks");
+                return View("success");
             }
             ViewBag.error = "שם משתמש כבר קיים ממערכת";
             return View("error");

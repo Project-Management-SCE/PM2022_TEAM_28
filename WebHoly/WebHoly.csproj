@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Areas\Identity\Pages\Account\Login.cshtml.cs" />
+    <Content Include="Areas\Identity\Pages\Account\Register.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Api\HebrewdatesHebcal.cshtml" />
     <None Include="Views\Api\Index.cshtml" />
     <None Include="Views\Api\JewishCalendarHebcal.cshtml" />

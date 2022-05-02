@@ -44,5 +44,7 @@ namespace WebHoly.ViewModels
         [Display(Name = "אישור סיסמה")]
         [Compare("Password", ErrorMessage = "הסיסמאות אינן תאומות.")]
         public string ConfirmPassword { get; set; }
+        public string City { get; set; }
+
     }
 }

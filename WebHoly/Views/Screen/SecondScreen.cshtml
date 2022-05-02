@@ -1,0 +1,117 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WebHoly.ViewModels.SecondScreen.SecondScreenViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string Todayday = DateTime.Now.Date.DayOfWeek.ToString() == "Sunday" ? "ראשון" :
+        DateTime.Now.Date.DayOfWeek.ToString() == "Monday" ? "שני" :
+        DateTime.Now.Date.DayOfWeek.ToString() == "Tuesday" ? "שלישי" :
+        DateTime.Now.Date.DayOfWeek.ToString() == "Wednesday" ? "רביעי" :
+        DateTime.Now.Date.DayOfWeek.ToString() == "Thursday" ? "חמישי" :
+        DateTime.Now.Date.DayOfWeek.ToString() == "Friday" ? "שישי" :
+        DateTime.Now.Date.DayOfWeek.ToString() == "Saturday" ? "שבת" : "";
+
+}
+
+<div class=" box">
+    <div class="card">
+        <div class="leftbox">
+            <div class="row">
+                <div class="col-md-1 "></div>
+                <div class="col-md-4"><strong> @DateTime.Now.Date.ToString("dd-MM-yy")</strong></div>
+                <div class="col-md-3 "><strong>@Model.HebrewDate.hebrew</strong></div>
+                <div class="col-md-2 ">
+                    <strong> @Todayday</strong>
+                </div>
+                <div class="col-md-2 "><strong>@Model.SinagugName</strong></div>
+            </div>
+            <div class="text-center mb-lg-1">
+
+                @foreach (var item in @Model.JewishCalender.items)
+                {
+                    if (@item.date > DateTime.Now && item.date <= DateTime.Now.AddDays(7))
+                    {
+                        @if (item.date.TimeOfDay.ToString() != "00:00:00")
+                        {
+                            <strong class="mb-lg-2 justify-content-lg-start flex-lg-row">
+                                @item.hebrew
+                            </strong>
+                            <br />
+                            <strong class="mb-lg-2">
+                                @item.date.TimeOfDay.ToString(@"h\:mm")
+                            </strong>
+                            <br />
+                        }
+                    }
+                }
+                @foreach (var item in @Model.JewishCalender.items)
+                {
+                    if (@item.date > DateTime.Now && item.date <= DateTime.Now.AddDays(7))
+                    {
+                        if (item.hebrew.StartsWith("פרשת"))
+                        {
+                            <strong class=" mb-lg-5">
+                                @item.hebrew
+                            </strong>
+                            <br />
+                        }
+                    }
+                }
+                <strong> אירועי השבוע </strong>
+                @foreach (var item in @Model.JewishCalender.items)
+                {
+                    if (@item.date > DateTime.Now && item.date <= DateTime.Now.AddDays(7))
+                    {
+                        if (!item.hebrew.StartsWith("פרשת") && (item.date.TimeOfDay.ToString() == "00:00:00"))
+                        {
+                            <div class="col-md-2 mb-lg-1 "></div>
+                            <strong style="margin-bottom:-10px;">
+                                @item.hebrew
+                            </strong>
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .box {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .leftbox {
+        background-image: url('/img/tample2.jpeg');
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 10px;
+        filter: brightness(130%);
+        background-size: 1300px 350px;
+    }
+
+    strong {
+        color: darkblue;
+        font-size: 20px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin: 15px 15px;
+    }
+
+    span {
+        color: #135ca5;
+        font-size: 20px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin: 15px 15px;
+    }
+</style>
+
+
+
+

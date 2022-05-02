@@ -1,13 +1,12 @@
 ﻿@model WebHoly.Models.SoulBoard
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "פרטים ";
 }
 
-<h1>Details</h1>
+<h1>פרטים</h1>
 
 <div>
-    <h4>SoulBoard</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -32,6 +31,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">ערוך</a> |
+    <a asp-action="Index">חזרה לרשימה המלאה</a>
 </div>
