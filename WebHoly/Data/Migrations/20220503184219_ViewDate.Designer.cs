@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebHoly.Data;
 
 namespace WebHoly.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220503184219_ViewDate")]
+    partial class ViewDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -407,38 +409,6 @@ namespace WebHoly.Data.Migrations
                     b.ToTable("RegularSubscription");
                 });
 
-            modelBuilder.Entity("WebHoly.Models.ScreenCssType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FontColor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FontSize")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FontType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HolySubscriptionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("LastUpdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PictureType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HolySubscriptionId");
-
-                    b.ToTable("ScreenCssTypes");
-                });
-
             modelBuilder.Entity("WebHoly.Models.SoulBoard", b =>
                 {
                     b.Property<int>("Id")
@@ -583,17 +553,6 @@ namespace WebHoly.Data.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WebHoly.Models.ScreenCssType", b =>
-                {
-                    b.HasOne("WebHoly.Models.HolySubscription", "HolySubscription")
-                        .WithMany()
-                        .HasForeignKey("HolySubscriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("HolySubscription");
                 });
 
             modelBuilder.Entity("WebHoly.Models.SoulBoard", b =>

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using WebHoly.ViewModels;
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using WebHoly.ViewModels.ThirdScreen;
+using WebHoly.Models;
+using WebHoly.Data;
 
 namespace WebHoly.Controllers
 {
@@ -20,10 +23,12 @@ namespace WebHoly.Controllers
         public HebrewDateViewModel hebrewDate { get; set; }
         const string BASE_URLSefaria = "https://www.sefaria.org/";
         const string BASE_URLHebcal = "https://www.hebcal.com/";
-
-        public ApiController(IHttpClientFactory clientFactory)
+        private readonly ApplicationDbContext _context;
+        public ApiController(IHttpClientFactory clientFactory, ApplicationDbContext context)
         {
             _clientFactory = clientFactory;
+            _context = context;
+
         }
         public IActionResult Index()
         {
@@ -168,8 +173,8 @@ namespace WebHoly.Controllers
         {
             //https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&M=on&s=on
             var todayDate = date.Month;
-            using (var  client = new HttpClient())
-            {   
+            using (var client = new HttpClient())
+            {
                 var message = new HttpRequestMessage();
                 message.Method = HttpMethod.Get;
                 message.RequestUri = new Uri($"{BASE_URLHebcal}hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month={todayDate}&ss=on&mf=on&c=on&geo=geoname&geonameid={cityId}&M=on&s=on");
@@ -231,8 +236,32 @@ namespace WebHoly.Controllers
                     Midras = Array.Empty<MidrasViewModel>();
                 }
             }
-
             return View(Midras);
         }
+        //להוספת הלכות נוספות יש לכניס את שם הקובץ ולהריץ וזה ישמר בבסיס הנתונים
+        //public void ShulchanAruchAbbreviation()
+        //{
+        //    string fileName = "JsonFiles/ShulchanAruchAbbreviation.json";
+        //    string jsonString = System.IO.File.ReadAllText(fileName);
+        //    ShulchanAruchAbbreviationViewModel shulchanAruchAbbreviation = JsonSerializer.Deserialize<ShulchanAruchAbbreviationViewModel>(jsonString)!;
+        //    foreach (var item in shulchanAruchAbbreviation.text)
+        //    {
+        //        foreach (var item2 in item)
+        //        {
+        //            var halachot = new Halachot()
+        //            {
+        //                Contents = item2,
+        //                CreatedDate = DateTime.Now,
+        //                Name = shulchanAruchAbbreviation.heTitle,
+        //                Source = shulchanAruchAbbreviation.versionSource,
+        //                ViewDate = DateTime.Now
+        //            };
+        //            _context.Halachot.Add(halachot);
+        //            _context.SaveChanges();
+        //        }
+        //    }
+        //}
+
+
     }
 }

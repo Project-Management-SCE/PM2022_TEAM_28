@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WebHoly.Controllers;
+using WebHoly.Data;
 using Xunit;
 
 namespace WebHoly.Tests.Controllers
@@ -18,7 +19,8 @@ namespace WebHoly.Tests.Controllers
         {
             // Arrange
             var mockRepo = new Mock<IHttpClientFactory>();
-            var controller = new ApiController(mockRepo.Object);
+            var mockData = new Mock<ApplicationDbContext>();
+            var controller = new ApiController(mockRepo.Object, mockData.Object);
             // Act
             var result = controller.Index();
 
@@ -30,8 +32,10 @@ namespace WebHoly.Tests.Controllers
         public void ShabbatApiHebcal_ReturnsAViewResult()
         {
             // Arrange
+
             var mockRepo = new Mock<IHttpClientFactory>();
-            var controller = new ApiController(mockRepo.Object);
+            var mockData = new Mock<ApplicationDbContext>();
+            var controller = new ApiController(mockRepo.Object, mockData.Object);
             string city = "Tal-Aviv";
             // Act
             var result = controller.ShabbatApiHebcal(city);
@@ -45,7 +49,8 @@ namespace WebHoly.Tests.Controllers
         {
             // Arrange
             var mockRepo = new Mock<IHttpClientFactory>();
-            var controller = new ApiController(mockRepo.Object);
+            var mockData = new Mock<ApplicationDbContext>();
+            var controller = new ApiController(mockRepo.Object, mockData.Object);
             int city = 215624;
             // Act
             var result = controller.JewishCalendarHebcal(city);
@@ -59,7 +64,8 @@ namespace WebHoly.Tests.Controllers
         {
             // Arrange
             var mockRepo = new Mock<IHttpClientFactory>();
-            var controller = new ApiController(mockRepo.Object);
+            var mockData = new Mock<ApplicationDbContext>();
+            var controller = new ApiController(mockRepo.Object, mockData.Object);
             string city = "Hifa";
 
             // Act
@@ -73,7 +79,8 @@ namespace WebHoly.Tests.Controllers
         {
             // Arrange
             var mockRepo = new Mock<IHttpClientFactory>();
-            var controller = new ApiController(mockRepo.Object);
+            var mockData = new Mock<ApplicationDbContext>();
+            var controller = new ApiController(mockRepo.Object, mockData.Object);
 
             // Act
             var result = controller.HebrewdatesHebcal();
@@ -87,7 +94,8 @@ namespace WebHoly.Tests.Controllers
         {
             // Arrange
             var mockRepo = new Mock<IHttpClientFactory>();
-            var controller = new ApiController(mockRepo.Object);
+            var mockData = new Mock<ApplicationDbContext>();
+            var controller = new ApiController(mockRepo.Object, mockData.Object);
             string city = "Hifa";
 
             // Act

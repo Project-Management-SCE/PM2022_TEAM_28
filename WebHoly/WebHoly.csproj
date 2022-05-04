@@ -45,6 +45,7 @@
     <None Include="Views\SoulBoards\Index.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\img\ScreenPic\Golden.jpg" />
   </ItemGroup>
 
   <ItemGroup>

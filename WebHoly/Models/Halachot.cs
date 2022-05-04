@@ -12,5 +12,8 @@ namespace WebHoly.Models
         public System.DateTime CreatedDate { get; set; }
         public string Contents { get; set; }
         public string Source { get; set; }
+        public System.DateTime ViewDate { get; set; }
+
+
     }
 }

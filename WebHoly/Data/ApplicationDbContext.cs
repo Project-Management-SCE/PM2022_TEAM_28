@@ -32,6 +32,7 @@ namespace WebHoly.Data
         public virtual DbSet<PrayerTimes> PrayerTimes { get; set; }
         public virtual DbSet<SoulBoard> SoulBoard { get; set; }
         public virtual DbSet<SoulBoardCssType> SoulBoardCssTypes { get; set; }
+        public virtual DbSet<ScreenCssType> ScreenCssTypes { get; set; }
 
 
     }
