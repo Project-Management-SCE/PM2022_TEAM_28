@@ -1,0 +1,46 @@
+﻿@model WebHoly.Models.PrayerTimes
+
+@{
+    ViewData["Title"] = "צור";
+}
+
+<h1 style="display: flex; justify-content: center;">הוספת זמני תפילה  </h1>
+
+<hr />
+<div class="container" style=" max-width:60%; width: 100%; display: flex; justify-content: center; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;  ">
+    <div class="col-12" style="width: 100%; ">
+        <div class="text-center">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ShacharitPrayer" class="control-label"></label>
+                    <input asp-for="ShacharitPrayer" type="time" class="form-control" />
+                    <span asp-validation-for="ShacharitPrayer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InauguralPrayer" class="control-label"></label>
+                    <input asp-for="InauguralPrayer"  type="time" class="form-control" />
+                    <span asp-validation-for="InauguralPrayer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaarivPrayer" class="control-label"></label>
+                    <input asp-for="MaarivPrayer"  type="time" class="form-control" />
+                    <span asp-validation-for="MaarivPrayer"  class="text-danger"></span>
+                </div>
+
+                <div class="form-group " style="margin: 20px 0 20px 0;">
+                    <input type="submit" value="צור" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <a asp-action="Index">חזרה  </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
