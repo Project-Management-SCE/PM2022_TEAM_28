@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {}
+    "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {
+    "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
         "projectName": "WebHoly.Tests",
-        "projectPath": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
-        "packagesPath": "C:\\Users\\97250\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\97250\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
-                "projectPath": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
+              "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
               }
             }
           }
@@ -120,21 +120,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+    "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
         "projectName": "WebHoly",
-        "projectPath": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
-        "packagesPath": "C:\\Users\\97250\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\97250\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\97250\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -198,9 +198,21 @@
               "target": "Package",
               "version": "[5.0.16, )"
             },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.0.3, )"
             },
             "NUnit": {
               "target": "Package",
@@ -209,6 +221,18 @@
             "PayPal": {
               "target": "Package",
               "version": "[1.9.1, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
+            "Quartz.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
+            "Quartz.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[3.4.0, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
@@ -233,7 +257,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WebHoly.Data;
@@ -13,6 +12,10 @@ using WebHoly.Models;
 using WebHoly.Service.PayPalHelper;
 using WebHoly.ViewModels;
 using WebHoly.Service;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using IEmailSender = WebHoly.Service.IEmailSender;
+
 namespace WebHoly.Controllers
 {
     public class HolySubscriptionsController : Controller
@@ -22,16 +25,18 @@ namespace WebHoly.Controllers
         private readonly UserManager<IdentityUser> _userManager;
 
         public IConfiguration _configuration { get; }
+        public IEmailSender _emailSender { get; }
         public HolySubscriptionViewModel UserHoly { get; private set; }
 
 
         public HolySubscriptionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager, IConfiguration configuration)
+            SignInManager<IdentityUser> signInManager, IConfiguration configuration, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _emailSender = emailSender;
         }
         // GET: HolySubscriptions
         public async Task<IActionResult> Index()
@@ -102,14 +107,14 @@ namespace WebHoly.Controllers
                     {
                         Aproved = true,
                         HolySubscriptionId = Holysub.Id,
-                        ReceptionNumber = 1,//until we will do a recept in sprint 2
+                        ReceptionNumber = RecipteNumber(),
                         PaymentDate = DateTime.Now,
                         Price = 199,
-
                     };
                     _context.Payment.Add(holyPayment);
 
                     _context.SaveChanges();
+                    RecipteSend(objComplex.Email, objComplex.Password);
                 }
                 return View("success");
             }
@@ -286,6 +291,36 @@ namespace WebHoly.Controllers
             return RedirectToAction("Create");
         }
 
+        [HttpGet]
+        public void RecipteSend(string email, string password)
+        {
+            var user = _context.Users.Where(x => x.Email == email).FirstOrDefault();
+            var HolySub = _context.HolySubscription.Where(x => x.UserId == user.Id).FirstOrDefault();
+            var payment = _context.Payment.Where(x => x.HolySubscriptionId == HolySub.Id).FirstOrDefault();
+            string body = "<html> <body dir='rtl'>" +
+
+                " <h2> " + HolySub.FirstName + " תודה רבה על הרשמתך ל WebHoly</h2>" +
+                "<span> הסכום ששולם : " + payment.Price + "  בתאריך : " + payment.PaymentDate + "</span> " +
+                "<strong> מספר קבלה :" + payment.ReceptionNumber + "</strong>" +
+                "<div> שם משתמש :" + email + " </div> <div> סיסמה : " + password +
+                "</body></html>";
+
+            var message = new Message(new string[] { email }, "ברוכים הבאים ל WebHoly ", body);
+            _emailSender.SendEmail(message);
+            //var mail = new Mails()
+            //{
+            //    Email = email,
+            //    SendDate = DateTime.Now,
+            //};
+            //_context.Add(mail);
+            //_context.SaveChanges();
+        }
+
+        public int RecipteNumber()
+        {
+            var payment = _context.Payment.OrderBy(x => x.PaymentDate).Select(x => x.ReceptionNumber).FirstOrDefault();
+            return payment + 1;
+        }
     }
 }
 //123@aA123 
