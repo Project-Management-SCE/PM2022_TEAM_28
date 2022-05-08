@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebHoly</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/Layout/css/style.css"/>
+
 </head>
 <body>
     <header>
@@ -25,25 +25,41 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">תקנון</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="FourthScreen">זמני היום</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="index">מסך ראשי</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="FirstScreen">זמני תפילות</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="SecondScreen">זמני שבת ואירועים</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="ThirdScreen">הלכה</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PrayerTimes" asp-action="Index">זמני תפילות -עריכה</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SoulBoards" asp-action="Index">לוח יזכור</a>
-                        </li>
-
                     </ul>
+
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    משתמש בית כנסת
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="FourthScreen">זמני היום</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="FirstScreen">זמני תפילות</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="SecondScreen">זמני שבת ואירועים</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="ThirdScreen">הלכה</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="PrayerTimes" asp-action="Index">זמני תפילות -עריכה</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="SoulBoards" asp-action="Index">לוח יזכור</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -60,11 +76,12 @@
             &copy; 2022 - WebHoly - <a asp-area="" asp-controller="Home" asp-action="Privacy">תקנון</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script src="https://cdn.enable.co.il/licenses/enable-L113372t83eyqf7a-0422-27953/init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -26,9 +26,59 @@ namespace WebHoly.Controllers
             _apiController = apiController;
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+
+            var userName = HttpContext.User.Identity.Name;
+            if (userName != null)
+            {
+                var screenCssViewModel = new ScreenCssTypeViewModel();
+                var user = _context.Users.Where(x => x.Email == userName).Select(s => s.Id).FirstOrDefault();
+                var Holyuser = _context.HolySubscription.Where(x => x.UserId == user).FirstOrDefault();
+                var x = _apiController.TodayTimeHebcal(Holyuser.City);
+                var todayTime = await _apiController.TodayTimeAsync(x.CityId, x.TodayDate);
+                var hebrewDate = await _apiController.HebrewDate();
+                var halachot = _context.Halachot.ToList().OrderBy(x => x.ViewDate).FirstOrDefault();
+                var prayTimes = _context.PrayerTimes.Where(x => x.HolySubscriptionId == Holyuser.Id).FirstOrDefault();
+                var jewishCalender = await _apiController.JewishCalendarAsync(x.CityId, x.TodayDate);
+                halachot.ViewDate = DateTime.Now;
+                _context.SaveChanges();
+
+                var screenCss = _context.ScreenCssTypes.Where(x => x.HolySubscriptionId == Holyuser.Id).FirstOrDefault();
+                if (screenCss != null)
+                {
+                    screenCssViewModel = new ScreenCssTypeViewModel
+                    {
+                        PictureType = screenCss.PictureType,
+                        FontSize = screenCss.FontSize + "px",
+                        FontType = screenCss.FontType,
+                        FontColor = screenCss.FontColor,
+                    };
+                }
+                else
+                {
+                    screenCssViewModel = new ScreenCssTypeViewModel
+                    {
+                        PictureType = "Golden.jpg",
+                        FontSize = "14px",
+                        FontType = "Arial",
+                        FontColor = "black"
+                    };
+                }
+                var details = new ScreenVieModel()
+                {
+                    Times = todayTime,
+                    HebrewDate = hebrewDate,
+                    SinagugName = Holyuser.FirstName != null ? Holyuser.FirstName : "",
+                    Halachot = halachot,
+                    JewishCalender = jewishCalender,
+                    PrayerTimes = prayTimes,
+                    ScreenCssType = screenCssViewModel
+                };
+                return View(details);
+            }
+            return View("index");
         }
 
         public async Task<IActionResult> FourthScreen()
@@ -130,7 +180,7 @@ namespace WebHoly.Controllers
         {
             ViewBag.FontSize = new SelectList(new List<int> { 14, 16, 18, 20 });
             ViewBag.FontType = new SelectList(new List<string> { "Arial", "David", "Candara", "Times New Roman" });
-            ViewBag.PictureType = new SelectList(new List<string> { "tample.jpeg", "Golden.jpg", "holy.png", "Wall.jpg" ,"WallView.jpg"});
+            ViewBag.PictureType = new SelectList(new List<string> { "tample.jpeg", "Golden.jpg", "holy.png", "Wall.jpg", "WallView.jpg" });
             ViewBag.FontColor = new SelectList(new List<string> { "white", "sliver", "black", "gold" });
             return View();
         }
@@ -152,7 +202,7 @@ namespace WebHoly.Controllers
                 allSoulCss.Id = allSoulCss.Id;
                 allSoulCss.FontSize = screenCssType.FontSize;
                 allSoulCss.FontType = screenCssType.FontType;
-                allSoulCss.PictureType = screenCssType.PictureType ;
+                allSoulCss.PictureType = screenCssType.PictureType;
                 allSoulCss.FontColor = screenCssType.FontColor;
                 allSoulCss.LastUpdate = DateTime.Now;
                 _context.SaveChanges();
