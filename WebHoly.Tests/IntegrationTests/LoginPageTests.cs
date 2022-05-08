@@ -15,14 +15,14 @@ using WebHoly.Tests.Helpers;
 using WebHoly.Tests.Identity;
 using Xunit;
 
-//namespace WebHoly.Tests.IntegrationTests
-//{
+namespace WebHoly.Tests.IntegrationTests
+{
     #region snippet1
 
     //public class LoginPageTests :
      // IClassFixture<CustomWebApplicationFactory<WebHoly.Startup>>
-   // {
-     //   private readonly HttpClient _client;
+    //{
+        //private readonly HttpClient _client;
     //    private readonly CustomWebApplicationFactory<WebHoly.Startup>
     //    _factory;
 
@@ -38,23 +38,23 @@ using Xunit;
 #endregion
 
         #region snippet2
-       [Fact]
-       public async Task LoginTest()
+       //[Fact]
+      // public async Task LoginTest()
         {
-             Arrange
-           var defaultPage = await _client.GetAsync("/Login");
-         var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+//Arrange
+          // var defaultPage = await _client.GetAsync("/Login");
+        // var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
-            var response = await _client.SendAsync(
-                (IHtmlFormElement)content.QuerySelector("form[id='account']"),
-                (IHtmlButtonElement)content.QuerySelector("button[id='login']"));
+            //var response = await _client.SendAsync(
+            //   (IHtmlFormElement)content.QuerySelector("form[id='account']"),
+               // (IHtmlButtonElement)content.QuerySelector("button[id='login']"));
 
             // Assert
-            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
-          / Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal("/Login", response.RequestMessage.Headers.Referrer.AbsolutePath);
-        }
+            //Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
+          // Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+           // Assert.Equal("/Login", response.RequestMessage.Headers.Referrer.AbsolutePath);
+       // }
         #endregion
 
        
