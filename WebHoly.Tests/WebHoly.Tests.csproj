@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+        <RollForward>Major</RollForward>
     <TargetFramework>net5.0</TargetFramework>
-    <RollForward>Major</RollForward>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
