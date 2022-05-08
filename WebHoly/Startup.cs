@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHoly.Data;
+using WebHoly.Service;
 using WebHoly.ViewModels;
 
 namespace WebHoly
@@ -33,6 +34,11 @@ namespace WebHoly
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();
+            var emailConfig = Configuration
+                            .GetSection("EmailConfiguration")
+                            .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
 
             services.AddControllersWithViews();
             services.AddHttpClient();
