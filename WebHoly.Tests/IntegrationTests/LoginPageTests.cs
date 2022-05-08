@@ -15,16 +15,16 @@ using WebHoly.Tests.Helpers;
 using WebHoly.Tests.Identity;
 using Xunit;
 
-namespace WebHoly.Tests.IntegrationTests
-{
+//namespace WebHoly.Tests.IntegrationTests
+//{
     #region snippet1
 
-    public class LoginPageTests :
-       IClassFixture<CustomWebApplicationFactory<WebHoly.Startup>>
-    {
-        private readonly HttpClient _client;
-        private readonly CustomWebApplicationFactory<WebHoly.Startup>
-        _factory;
+    //public class LoginPageTests :
+     // IClassFixture<CustomWebApplicationFactory<WebHoly.Startup>>
+   // {
+     //   private readonly HttpClient _client;
+    //    private readonly CustomWebApplicationFactory<WebHoly.Startup>
+    //    _factory;
 
         //public LoginPageTests(
             //CustomWebApplicationFactory<WebHoly.Startup> factory)
@@ -38,12 +38,12 @@ namespace WebHoly.Tests.IntegrationTests
 #endregion
 
         #region snippet2
-        [Fact]
-        public async Task LoginTest()
+       [Fact]
+       public async Task LoginTest()
         {
-            // Arrange
+             Arrange
            var defaultPage = await _client.GetAsync("/Login");
-            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+         var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
             var response = await _client.SendAsync(
@@ -52,7 +52,7 @@ namespace WebHoly.Tests.IntegrationTests
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+          / Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal("/Login", response.RequestMessage.Headers.Referrer.AbsolutePath);
         }
         #endregion
