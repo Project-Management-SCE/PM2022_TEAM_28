@@ -41,7 +41,7 @@ namespace WebHoly.Controllers
                         {
                             SoulBoard = soulBoard,
                             CandleType = soulBoardsCss.CandleType,
-                            FontSize = soulBoardsCss.FontSize.ToString() +"px",
+                            FontSize = soulBoardsCss.FontSize.ToString() + "px",
                             FontType = soulBoardsCss.FontType,
                             SoulBoardZero = soulBoard.Count != 0 ? true : false,
                         };
@@ -94,7 +94,7 @@ namespace WebHoly.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( SoulBoard soulBoard)
+        public async Task<IActionResult> Create(SoulBoard soulBoard)
         {
             var userName = HttpContext.User.Identity.Name;
             if (userName != null)
@@ -215,7 +215,7 @@ namespace WebHoly.Controllers
         {
             var userid = await _context.Users.Where(x => x.Email == HttpContext.User.Identity.Name).Select(s => s.Id).FirstOrDefaultAsync();
             var holyUser = await _context.HolySubscription.Where(x => x.UserId == userid).FirstOrDefaultAsync();
-            var allSoulCss = await _context.SoulBoardCssTypes.Where( x=> x.HolySubscriptionId==holyUser.Id).FirstOrDefaultAsync();
+            var allSoulCss = await _context.SoulBoardCssTypes.Where(x => x.HolySubscriptionId == holyUser.Id).FirstOrDefaultAsync();
             if (allSoulCss == null)
             {
                 soulBoardCss.HolySubscriptionId = holyUser.Id;
@@ -228,7 +228,7 @@ namespace WebHoly.Controllers
                 allSoulCss.Id = allSoulCss.Id;
                 allSoulCss.FontSize = soulBoardCss.FontSize;
                 allSoulCss.FontType = soulBoardCss.FontType;
-                allSoulCss.CandleType = soulBoardCss.CandleType+ ".jpg";
+                allSoulCss.CandleType = soulBoardCss.CandleType + ".jpg";
                 allSoulCss.LastUpdate = DateTime.Now;
                 _context.SaveChanges();
             }
