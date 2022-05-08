@@ -26,15 +26,15 @@ namespace WebHoly.Tests.IntegrationTests
         private readonly CustomWebApplicationFactory<WebHoly.Startup>
         _factory;
 
-        public LoginPageTests(
-            CustomWebApplicationFactory<WebHoly.Startup> factory)
-        {
-            _factory = factory;
-            _client = factory.CreateClient(new WebApplicationFactoryClientOptions
-            {
-                AllowAutoRedirect = false
-            });
-        }
+        //public LoginPageTests(
+            //CustomWebApplicationFactory<WebHoly.Startup> factory)
+        //{
+            //_factory = factory;
+            //_client = factory.CreateClient(new WebApplicationFactoryClientOptions
+            //{
+                //AllowAutoRedirect = false
+            //});
+        //}
 #endregion
 
         #region snippet2
