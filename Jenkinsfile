@@ -28,11 +28,11 @@ pipeline {
                sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
             }
          }
-       //stage('Test: Unit Test'){
-           //steps {
-              //  sh 'dotnet test WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
-            // }
-         // }
+       stage('Test: Unit Test'){
+           steps {
+                sh 'dotnet test WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
+             }
+          }
         
         
         
