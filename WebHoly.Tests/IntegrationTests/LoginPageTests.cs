@@ -1,3 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using AngleSharp.Html.Dom;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using WebHoly.Data;
+using WebHoly.Tests.Helpers;
+using WebHoly.Tests.Identity;
+using Xunit;
+
 namespace WebHoly.Tests.IntegrationTests
 {
     #region snippet1
