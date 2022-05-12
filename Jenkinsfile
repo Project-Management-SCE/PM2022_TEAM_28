@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'mcr.microsoft.com/dotnet/sdk:5.0'
+            image 'mcr.microsoft.com/dotnet/sdk:6.0'
         }
     }
     environment {
@@ -28,11 +28,20 @@ pipeline {
                sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
             }
          }
-        stage('Test: Unit Test'){
+       stage('Test: Unit Test'){
            steps {
-                sh 'dotnet test WebHoly.Test/WebHoly.Test.csproj --configuration Release --no-restore'
+                sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
              }
           }
-        
+        stage('Push & Release'){
+           steps {
+                sh '''
+                    curl https://cli-assets.heroku.com/install.sh | sh;
+                    heroku container:login
+                    heroku container:push web --app web-holy
+                    heroku container:release web --app web-holy
+                '''
+            }
+        }
     }
 }
