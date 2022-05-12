@@ -17,4 +17,6 @@ RUN dotnet build "WebHoly.csproj" -c Release -o /app/build
  FROM base AS final
  WORKDIR /app
 COPY --from=publish /app/publish .
- ENTRYPOINT ["dotnet", "/WebHoly.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet WebHoly.dll
+
+#ENTRYPOINT ["dotnet", "/WebHoly.dll"]
