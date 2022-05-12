@@ -9,34 +9,45 @@ pipeline {
         githubPush()
     }
     stages {                  
-        stage('Restore, Clean, Build , Tests'){
-               agent{
-                      docker{
-                             image 'mcr.microsoft.com/dotnet/sdk:6.0'
-                      }
-               }              
-               stages{ 
-                       stage('Restore packages'){
-                         steps{
-                             sh 'dotnet restore ./WebHoly/WebHoly.sln'
-                          }
-                       }
-                      stage('Clean'){
-                       steps{
-                             sh 'dotnet clean ./WebHoly/WebHoly.sln --configuration Release'
-                       }   
-                      }
-                      stage('Build'){             
-                         steps{
-                             sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
-                          }
-                       }
-                     stage('Tests: xUnit Test'){      
-                         steps {
-                              sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
-                           }
-                        }
-               }
-           }
+        stage('Restore packages'){
+            agent{
+                docker{
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                }
+            }      
+            steps{
+                sh 'dotnet restore ./WebHoly/WebHoly.sln'
+            }
+        }
+        stage('Clean'){
+            agent{
+                docker{
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    }
+               }      
+            steps{
+                sh 'dotnet clean ./WebHoly/WebHoly.sln --configuration Release'
+            }   
+        }
+        stage('Build'){ 
+            agent{
+                docker{
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    }
+               }                  
+            steps{
+                 sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
+            }
+        }
+        stage('Tests: xUnit Test'){     
+            agent{
+                docker{
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    }
+            }           
+            steps {
+                sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
+            }
+       }
     }
 }
