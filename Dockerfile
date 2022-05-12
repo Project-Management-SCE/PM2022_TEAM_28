@@ -5,7 +5,7 @@ EXPOSE 80
  
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
  WORKDIR /src
- COPY ["WebHoly/WebHoly/WebHoly.csproj", "WebHoly/"]
+ COPY ["WebHoly/WebHoly.csproj", "WebHoly/"]
  RUN dotnet restore "WebHoly/WebHoly.csproj"
  COPY . .
 WORKDIR "/src/WebHoly"
