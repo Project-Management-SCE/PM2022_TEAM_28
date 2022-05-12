@@ -1,10 +1,4 @@
 pipeline {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/dotnet/sdk:6.0'
-            args '-u root'
-        }
-    }
     environment {
         dotnet ='C:\\Program Files (x86)\\dotnet\\'
         DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
@@ -35,6 +29,12 @@ pipeline {
              }
           }
         stage('Push & Release'){
+             agent {
+                docker {
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    args '-u root'
+                }
+            }
            steps {
                 sh '''
                     curl https://cli-assets.heroku.com/install.sh | sh;
