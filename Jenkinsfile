@@ -9,7 +9,7 @@ pipeline {
         githubPush()
     }
     stages {                  
-        stage('Restore, Clean, Build and Test'){
+        stage('Restore, Clean, Build , Tests'){
                agent{
                       docker{
                              image 'mcr.microsoft.com/dotnet/sdk:5.0'
@@ -31,7 +31,7 @@ pipeline {
                              sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
                           }
                        }
-                     stage('Test: Unit Test'){      
+                     stage('Tests: xUnit Test'){      
                          steps {
                               sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
                            }
