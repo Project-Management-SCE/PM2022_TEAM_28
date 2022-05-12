@@ -12,7 +12,7 @@ pipeline {
         stage('Restore packages'){
             agent{
                 docker{
-                    image 'mcr.microsoft.com/dotnet/sdk:5.0'
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
                 }
             }      
             steps{
@@ -22,7 +22,7 @@ pipeline {
         stage('Clean'){
             agent{
                 docker{
-                    image 'mcr.microsoft.com/dotnet/sdk:5.0'
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
                     }
                }      
             steps{
@@ -32,7 +32,7 @@ pipeline {
         stage('Build'){ 
             agent{
                 docker{
-                    image 'mcr.microsoft.com/dotnet/sdk:5.0'
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
                     }
                }                  
             steps{
@@ -42,7 +42,7 @@ pipeline {
         stage('Tests: xUnit Test'){     
             agent{
                 docker{
-                    image 'mcr.microsoft.com/dotnet/sdk:5.0'
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
                     }
             }           
             steps {
