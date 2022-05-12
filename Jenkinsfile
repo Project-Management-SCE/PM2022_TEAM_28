@@ -1,11 +1,9 @@
 pipeline {
     agent {
-               docker {
-                   image 'cimg/base:stable'
-                   args '-u root'
-               }
-           }
-
+        docker {
+            image 'mcr.microsoft.com/dotnet/sdk:5.0'
+        }
+    }
     environment {
         dotnet ='C:\\Program Files (x86)\\dotnet\\'
         DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
@@ -30,27 +28,11 @@ pipeline {
                sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
             }
          }
-       stage('Test: Unit Test'){
+        stage('Test: Unit Test'){
            steps {
-                sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
+                sh 'dotnet test WebHoly.Test/WebHoly.Test.csproj --configuration Release --no-restore'
              }
           }
-        stage('Deploy to Heroku') {
-           agent {
-               docker {
-                   image 'cimg/base:stable'
-                   args '-u root'
-               }
-           }
-           steps {
-               sh '''
-                   curl https://cli-assets.heroku.com/install.sh | sh;
-                   heroku container:login
-                   heroku container:push web --web-holy
-                   heroku container:release web --app web-holy
-               '''
-           }
-       }
-
+        
     }
 }
