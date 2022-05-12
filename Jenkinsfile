@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'cimg/base:stable'
+            image 'mcr.microsoft.com/dotnet/sdk:5.0'
             args '-u root'
         }
     }
