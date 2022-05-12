@@ -33,8 +33,13 @@ pipeline {
                 sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
              }
           }
-        
-        
-        
+           steps {
+                sh '''
+                    curl https://cli-assets.heroku.com/install.sh | sh;
+                    heroku container:login
+                    heroku container:push web --app web-holy
+                    heroku container:release web --app web-holy
+                '''
+            }
     }
 }
