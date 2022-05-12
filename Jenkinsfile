@@ -1,9 +1,11 @@
 pipeline {
-     agent {
-                docker {
-                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
-                }
-            }
+    agent {
+               docker {
+                   image 'cimg/base:stable'
+                   args '-u root'
+               }
+           }
+
     environment {
         dotnet ='C:\\Program Files (x86)\\dotnet\\'
         DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
