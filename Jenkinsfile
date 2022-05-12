@@ -20,11 +20,7 @@ pipeline {
             }
         }
         stage('Clean'){
-            agent{
-                docker{
-                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
-                    }
-               }      
+            
             steps{
                 sh 'dotnet clean ./WebHoly/WebHoly.sln --configuration Release'
             }   
