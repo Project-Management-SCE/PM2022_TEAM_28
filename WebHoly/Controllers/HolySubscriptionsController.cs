@@ -321,6 +321,21 @@ namespace WebHoly.Controllers
             var payment = _context.Payment.OrderBy(x => x.PaymentDate).Select(x => x.ReceptionNumber).FirstOrDefault();
             return payment + 1;
         }
+
+        public IActionResult PersonalArea()
+        {
+            var userName = HttpContext.User.Identity.Name;
+            if (userName != null)
+            {
+                var user = _context.Users.Where(x => x.Email == userName).Select(s => s.Id).FirstOrDefault();
+                var holyUser = _context.HolySubscription.Where(x => x.UserId == user)
+                    .Include(x => x.User)
+                    .Include(x => x.Payment).ToList();
+
+                return View(holyUser);
+            }
+            return View();
+        }
     }
 }
 //123@aA123 

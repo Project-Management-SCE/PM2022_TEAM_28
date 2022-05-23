@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<WebHoly.Models.HolySubscription>
+
+<link href="~/css/PersonalArea.css" rel="stylesheet" />
+@foreach (var item in Model)
+{
+    
+        <div class="RevenuSt">
+            <h4>חיובים במערכת</h4>
+        </div>
+        <table style="width:100%;margin:20px 10px 5px 25px;">
+            <tr>
+                <th>תאריך חיוב</th>
+                <th>סכום חיוב</th>
+                <th>מספר קבלה</th>
+            </tr>
+            @foreach (var payments in item.Payment)
+            {
+                <tr>
+                    <td>@payments.PaymentDate</td>
+                    <td>@payments.Price</td>
+                    <td>@payments.ReceptionNumber</td>
+                </tr>
+            }
+        </table>
+}
