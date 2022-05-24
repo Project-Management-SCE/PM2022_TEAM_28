@@ -15,11 +15,11 @@ namespace WebHoly.Controllers
     public class RegularSubscriptionsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RegularSubscriptionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        public RegularSubscriptionsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
             _userManager = userManager;
@@ -73,10 +73,12 @@ namespace WebHoly.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = regularSubscription.Email, Email = regularSubscription.Email, };
+                var user = new ApplicationUser { UserName = regularSubscription.Email, Email = regularSubscription.Email, };
                 var result = await _userManager.CreateAsync(user, regularSubscription.Password);
                 if (result.Succeeded)
                 {
+                    _userManager.AddToRoleAsync(user, "RegularUser").Wait();
+
                     var regulerSub = new RegularSubscription
                     {
                         Community = regularSubscription.Community,
@@ -181,5 +183,9 @@ namespace WebHoly.Controllers
         {
             return _context.RegularSubscription.Any(e => e.Id == id);
         }
+
+
+        
+
     }
 }

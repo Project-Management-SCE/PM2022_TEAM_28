@@ -22,6 +22,7 @@ namespace WebHoly.ViewModels
         public Halachot Halachot { get; set; }
 
         public ScreenCssTypeViewModel ScreenCssType { get; set; }
+        public SoulBoard SoulBoard { get; set; }
 
 
     }

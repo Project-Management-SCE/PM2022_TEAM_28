@@ -11,18 +11,23 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 using WebHoly.ViewModels.ThirdScreen;
 using WebHoly.Models;
 using WebHoly.Data;
+using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace WebHoly.Controllers
 {
     public class ApiController : Controller
     {
         private readonly IHttpClientFactory _clientFactory;
+        private static readonly HttpClient client = new HttpClient();
+
         public IEnumerable<MidrasViewModel> Midras { get; set; }
         public TimesViewModel TodayTime { get; set; }
         public JewishCalenderViewModel jewishCalender { get; set; }
         public HebrewDateViewModel hebrewDate { get; set; }
         const string BASE_URLSefaria = "https://www.sefaria.org/";
         const string BASE_URLHebcal = "https://www.hebcal.com/";
+        const string BASE_URLIbibles = "https://ibibles.net/";
         private readonly ApplicationDbContext _context;
         public ApiController(IHttpClientFactory clientFactory, ApplicationDbContext context)
         {
@@ -201,19 +206,9 @@ namespace WebHoly.Controllers
             ViewBag.book = book;
             return View(book);
         }
-        public IActionResult BibleApichapter(int sChapter, int sVrse, int eChapter, int eVrse)
-        {
-            //http://ibibles.net/quote.php?hmv-@book/@sChapter:@sVrse-@eChapter:@eVrse
-            var model = new BiblesViewModel
-            {
-                Book = ViewBag.book,
-                SChapter = sChapter,
-                SVrse = sVrse,
-                EChapter = eChapter,
-                EVrse = eVrse
-            };
-            return View(model);
-        }
+       
+
+
         public async Task<IActionResult> MidrasSefariaApi(string book, int sChapter, int eChapter)
         {
             using (var client = new HttpClient())

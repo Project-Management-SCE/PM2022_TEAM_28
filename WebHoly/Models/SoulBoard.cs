@@ -18,6 +18,8 @@ namespace WebHoly.Models
         public string DateOfDeathHebrew { get; set; }
         public int HolySubscriptionId { get; set; }
 
+        public DateTime UpdatedTime { get; set; }
+
         public virtual HolySubscription HolySubscription { get; set; }
     }
 }

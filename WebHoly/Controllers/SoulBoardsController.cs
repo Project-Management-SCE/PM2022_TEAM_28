@@ -12,6 +12,7 @@ using WebHoly.ViewModels;
 
 namespace WebHoly.Controllers
 {
+    [Authorize(Roles = "HolyUser")]
     public class SoulBoardsController : Controller
     {
         private readonly ApplicationDbContext _context;

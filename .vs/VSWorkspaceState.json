@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\WebHoly",
-    "\\WebHoly\\Views",
-    "\\WebHoly\\Views\\RegularSubscriptions"
+    "\\WebHoly\\Controllers",
+    "\\WebHoly\\Views\\Screen",
+    "\\WebHoly\\Views\\Shared"
   ],
-  "SelectedNode": "\\WebHoly\\Views\\RegularSubscriptions\\Create.cshtml",
+  "SelectedNode": "\\WebHoly\\WebHoly.sln",
   "PreviewInSolutionExplorer": false
 }
