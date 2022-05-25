@@ -13,6 +13,7 @@ using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
 [assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("WebHoly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\bestr\\source\\repos\\Project-Management-SCE\\PM2022_TEAM_28\\WebHoly", "WebHoly.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("WebHoly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\Asus\\OneDrive\\מסמכים\\GitHub\\PM2022_TEAM_28\\WebHoly", "WebHoly.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebHoly.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
