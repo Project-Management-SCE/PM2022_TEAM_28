@@ -21,16 +21,16 @@ namespace WebHoly.Controllers
     public class HolySubscriptionsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public IConfiguration _configuration { get; }
         public IEmailSender _emailSender { get; }
         public HolySubscriptionViewModel UserHoly { get; private set; }
 
 
-        public HolySubscriptionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager, IConfiguration configuration, IEmailSender emailSender)
+        public HolySubscriptionsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
@@ -82,11 +82,13 @@ namespace WebHoly.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = objComplex.Email, Email = objComplex.Email, };
+                var user = new ApplicationUser { UserName = objComplex.Email, Email = objComplex.Email, };
                 var result = await _userManager.CreateAsync(user, objComplex.Password);
 
                 if (result.Succeeded)
                 {
+                    _userManager.AddToRoleAsync(user, "HolyUser").Wait();
+
                     var Holysub = new HolySubscription
                     {
                         Community = objComplex.Community,
@@ -226,11 +228,12 @@ namespace WebHoly.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = objComplex.Email, Email = objComplex.Email, };
+                var user = new ApplicationUser { UserName = objComplex.Email, Email = objComplex.Email, };
                 var result = await _userManager.CreateAsync(user, objComplex.Password);
 
                 if (result.Succeeded)
                 {
+                    _userManager.AddToRoleAsync(user, "HolyUser").Wait();
                     var Holysub = new HolySubscription
                     {
                         Community = objComplex.Community,
@@ -250,7 +253,7 @@ namespace WebHoly.Controllers
                     {
                         Aproved = true,
                         HolySubscriptionId = Holysub.Id,
-                        ReceptionNumber = 1,//until we will do a recept in sprint 2
+                        ReceptionNumber = RecipteNumber(),
                         PaymentDate = DateTime.Now,
                         Price = 199,
 
@@ -331,11 +334,61 @@ namespace WebHoly.Controllers
                 var holyUser = _context.HolySubscription.Where(x => x.UserId == user)
                     .Include(x => x.User)
                     .Include(x => x.Payment).ToList();
-
                 return View(holyUser);
             }
             return View();
         }
+
+        public async Task<IActionResult> PersonalAreaEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var HolySubscription = await _context.HolySubscription.Where(x => x.Id == id).Include(x => x.User).FirstOrDefaultAsync();
+            if (HolySubscription == null)
+            {
+                return NotFound();
+            }
+            var model = new HolyPersonalAreaViewModel()
+            {
+                Address = HolySubscription.Address,
+                Email = HolySubscription.User.Email,
+                FirstName = HolySubscription.FirstName,
+                Id = HolySubscription.Id,
+                City = HolySubscription.City,
+                PhoneNumber = HolySubscription.City
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PersonalAreaEdit(HolyPersonalAreaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _context.HolySubscription.Where(x => x.Id == model.Id).Include(x => x.User).FirstOrDefault();
+                var email = user.User.Email;
+                user.Address = model.Address;
+                user.FirstName = model.FirstName;
+                user.User.Email = model.Email;
+                user.User.UserName = model.Email;
+                user.User.NormalizedEmail = model.Email.ToUpper();
+                user.User.NormalizedUserName = model.Email.ToUpper();
+                user.City = model.City;
+                user.Phone = model.PhoneNumber;
+                _context.SaveChanges();
+                if (email != model.Email)
+                {
+                    await _signInManager.SignOutAsync();
+                    return RedirectToAction("Index", "Home");
+                }
+                return RedirectToAction("PersonalArea");
+            }
+            return View(model);
+        }
+
     }
 }
 //123@aA123 

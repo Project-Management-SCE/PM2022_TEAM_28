@@ -23,6 +23,13 @@ namespace WebHoly.Controllers
         {
             return View();
         }
+      
+        public async Task<IActionResult> RegularUserList()
+        {
+            var applicationDbContext = _context.RegularSubscription.Include(h => h.User);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
         public async Task<IActionResult> HolyUserList()
         {
             var applicationDbContext = _context.HolySubscription.Include(h => h.User);

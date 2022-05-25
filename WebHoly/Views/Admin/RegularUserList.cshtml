@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebHoly.Models.RegularSubscription>
+
+<div class="container">
+    <div class="RevenuSt">
+        <h2> רשומים באתר  </h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    שם לקוח
+                </th>
+                <th>
+                    כתובת מייל
+                </th>
+                <th>
+                    תאריך התחברות אחרונה
+                </th>
+                <th>
+                    תאריך הרשמה
+                </th>
+                <th>
+                   מגדר
+                </th>
+             
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.User.Email
+
+                    </td>
+                    <td>
+                        @item.User.LastLogin
+                    </td>
+                    <td>
+                        @item.CreatedDate
+                    </td>
+                    <td>
+                        @(item.Gender == false? "זכר" : "נקבה")
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">הצג פרטים</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

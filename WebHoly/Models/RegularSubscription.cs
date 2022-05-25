@@ -17,6 +17,6 @@ namespace WebHoly.Models
         public int Age { get; set; }
         public string FirstName { get; set; }
         public string Community { get; set; }
-        public virtual IdentityUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

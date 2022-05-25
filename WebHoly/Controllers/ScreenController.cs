@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebHoly.Controllers
 {
+    [Authorize(Roles = "HolyUser")]
     public class ScreenController : Controller
     {
         private Controllers.ApiController _apiController;
@@ -43,8 +44,11 @@ namespace WebHoly.Controllers
                 var prayTimes = _context.PrayerTimes.Where(x => x.HolySubscriptionId == Holyuser.Id).FirstOrDefault();
                 var jewishCalender = await _apiController.JewishCalendarAsync(x.CityId, x.TodayDate);
                 halachot.ViewDate = DateTime.Now;
+                var soulborad = _context.SoulBoard.OrderBy(x => x.UpdatedTime).FirstOrDefault();
+                soulborad.UpdatedTime = DateTime.Now;
                 _context.SaveChanges();
 
+                
                 var screenCss = _context.ScreenCssTypes.Where(x => x.HolySubscriptionId == Holyuser.Id).FirstOrDefault();
                 if (screenCss != null)
                 {
@@ -74,7 +78,8 @@ namespace WebHoly.Controllers
                     Halachot = halachot,
                     JewishCalender = jewishCalender,
                     PrayerTimes = prayTimes,
-                    ScreenCssType = screenCssViewModel
+                    ScreenCssType = screenCssViewModel,
+                    SoulBoard = soulborad
                 };
                 return View(details);
             }

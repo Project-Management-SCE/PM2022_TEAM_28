@@ -7,7 +7,7 @@ using WebHoly.Models;
 
 namespace WebHoly.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
        
 
@@ -33,7 +33,5 @@ namespace WebHoly.Data
         public virtual DbSet<SoulBoard> SoulBoard { get; set; }
         public virtual DbSet<SoulBoardCssType> SoulBoardCssTypes { get; set; }
         public virtual DbSet<ScreenCssType> ScreenCssTypes { get; set; }
-
-
     }
 }
