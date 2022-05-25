@@ -214,5 +214,24 @@ namespace WebHoly.Controllers
             }
             return RedirectToAction("index");
         }
+        public async Task<IActionResult> TodayTime()
+        {
+            {
+                var x = _apiController.TodayTimeHebcal("באר שבע");
+                var todayTime = await _apiController.TodayTimeAsync(x.CityId, x.TodayDate);
+                var hebrewDate = await _apiController.HebrewDate();
+                if (todayTime != null && hebrewDate != null)
+                {
+                    var details = new FourthScreenViewModel()
+                    {
+                        Times = todayTime,
+                        HebrewDate = hebrewDate,
+                    };
+
+                    return View(details);
+                }
+            }
+            return View("index");
+        }
     }
 }
