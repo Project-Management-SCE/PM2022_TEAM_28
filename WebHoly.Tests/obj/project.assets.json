@@ -11881,23 +11881,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\מסמכים\\GitHub\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
       "projectName": "WebHoly.Tests",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\מסמכים\\GitHub\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\מסמכים\\GitHub\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
+      "projectPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\WebHoly.Tests.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly.Tests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11911,8 +11907,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Asus\\OneDrive\\מסמכים\\GitHub\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\מסמכים\\GitHub\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
+            "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj": {
+              "projectPath": "C:\\Users\\user\\source\\repos\\PM2022_TEAM_28\\WebHoly\\WebHoly.csproj"
             }
           }
         }
@@ -12011,7 +12007,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
       }
     }
   },
