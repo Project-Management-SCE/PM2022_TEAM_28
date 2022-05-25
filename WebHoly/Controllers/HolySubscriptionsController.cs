@@ -325,7 +325,6 @@ namespace WebHoly.Controllers
             return payment + 1;
         }
 
-
         public IActionResult PersonalArea()
         {
             var userName = HttpContext.User.Identity.Name;
@@ -335,7 +334,6 @@ namespace WebHoly.Controllers
                 var holyUser = _context.HolySubscription.Where(x => x.UserId == user)
                     .Include(x => x.User)
                     .Include(x => x.Payment).ToList();
-              
                 return View(holyUser);
             }
             return View();

@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/dotnet/sdk:6.0'
-        }
-    }
+       agent none
     environment {
         dotnet ='C:\\Program Files (x86)\\dotnet\\'
         DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
@@ -12,34 +8,51 @@ pipeline {
     	 pollSCM 'H * * * *'
         githubPush()
     }
-    stages {
-        stage('Restore packages'){
-           steps{
-               sh 'dotnet restore ./WebHoly/WebHoly.sln'
-            }
-         }
-        stage('Clean'){
-           steps{
-               sh 'dotnet clean ./WebHoly/WebHoly.sln --configuration Release'
-            }
-         }         
-        stage('Build'){
-           steps{
-               sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
-            }
-         }
-       stage('Test: Unit Test'){
+    stages {                  
+        stage('Main Stage'){
+               agent{
+                      docker{
+                             image 'mcr.microsoft.com/dotnet/sdk:5.0'
+                      }
+               }              
+               stages{ 
+                       stage('Restore'){
+                         steps{
+                             sh 'dotnet restore ./WebHoly/WebHoly.sln'
+                          }
+                       }
+                      stage('Clean'){
+                       steps{
+                             sh 'dotnet clean ./WebHoly/WebHoly.sln --configuration Release'
+                       }   
+                      }
+                      stage('Build'){             
+                         steps{
+                             sh 'dotnet build ./WebHoly/WebHoly.sln --configuration Release --no-restore'
+                          }
+                       }
+                     stage('xUnit Test'){      
+                         steps {
+                              sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
+                           }
+                        }
+               }
+        }          
+        stage('Deploy to Heroku') { 
+               agent{
+                      docker{
+                            image 'cimg/base:stable'
+                             args '-u root'
+                      }
+               }
            steps {
-                sh 'dotnet test ./WebHoly.Tests/WebHoly.Tests.csproj --configuration Release --no-restore'
-             }
-          }
-         steps {
-                sh '''
-                    curl https://cli-assets.heroku.com/install.sh | sh;
-                    heroku container:login
-                    heroku container:push web --app web-holy
-                    heroku container:release web --app web-holy
-                '''
-            }
+               sh '''
+                   curl https://cli-assets.heroku.com/install.sh | sh;
+                   heroku container:login
+                   heroku container:push web --app web-holy
+                   heroku container:release web --app web-holy
+               '''
+           }
+       }
     }
 }

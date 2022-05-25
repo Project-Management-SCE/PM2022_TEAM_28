@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebHoly.Models.Payment>
+@{
+    var sum = ViewBag.sum;
+}
+<div class="container">
+    <div class="RevenuSt">
+        <h2> הכנסות</h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    שם לקוח
+                </th>
+                <th>
+                    סכום תשלום
+                </th>
+                <th>
+                    תאריך חיוב
+                </th>
+                <th>
+                    מספר קבלה
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.HolySubscription.FirstName
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @item.PaymentDate
+                    </td>
+                    <td>
+                        @item.ReceptionNumber
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">הצג פרטים</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div>
+        סך הכנסות : @sum
+    </div>
+</div>
