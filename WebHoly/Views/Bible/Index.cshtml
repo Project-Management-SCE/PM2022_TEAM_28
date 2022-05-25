@@ -1,0 +1,162 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WebHoly.Models.BookType
+
+
+
+<div id="check">
+
+    <form id="myForm" asp-controller="Bible" asp-action="Index" method="post" class="" role="form">
+        <div class="form-group">
+            <div class="row">
+                <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="col-xl-12 col-sm-6 col-md-5 col-lg-4">
+                    <label asp-for="Name" class="control-label"></label>
+                    <select asp-for="Id" class="form-control" asp-items="@(new SelectList(ViewBag.ListofBookType, "Id", "Name"))"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xl-12 col-sm-6 col-md-5 col-lg-4">
+                    <label class="control-label"> ספר</label>
+                    <select class="form-control" id="BookId" name="BookId" asp-for="BookId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="col-xl-12 col-sm-6 col-md-5 col-lg-4">
+                    <label class="control-label"> פרק</label>
+                    <select class="form-control" id="EpisodeId" name="EpisodeId" asp-for="EpisodeId" asp-items="@(new SelectList(string.Empty, "Id", "Number"))"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xl-12 col-sm-6 col-md-5 col-lg-4">
+                    <input type="button" value="מצא" onclick="AjaxFormSubmit()" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class=" box">
+        <div class="card">
+            <div class="leftbox">
+                <div class="row bible ">
+                    <span id="lblName"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script src="/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var items = "<option value='0'>בחר</option>";
+        $('#BookId').html(items);
+        $('#EpisodeId').html(items);
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Id').change(function () {
+            var url = '@Url.Content("~/")' + "Bible/GetBook";
+            var ddlsource = "#Id";
+            $.getJSON(url, { BookTypeId: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $("#BookId").empty();
+                $.each(data, function (i, book) {
+                    items += "<option value ='" + book.value + "'>" + book.text + "</option>";
+                });
+                $('#BookId').html(items);
+            });
+        });
+    });
+     $(document).ready(function () {
+         $('#BookId').change(function () {
+             var url = '@Url.Content("~/")' + "Bible/GetEpisode";
+             var ddlsource = "#BookId";
+             $.getJSON(url, { BookId: $(ddlsource).val() }, function (data) {
+                var items = '';
+                 $("#EpisodeId").empty();
+                 $.each(data, function (i, episode) {
+                     items += "<option value ='" + episode.value + "'>" + episode.text + "</option>";
+                });
+                 $('#EpisodeId').html(items);
+            });
+        });
+    });
+
+    function AjaxFormSubmit() {
+        //Set the URL.
+        var url = $("#myForm").attr("action");
+
+        //Add the Field values to FormData object.
+        var formData = new FormData();
+        formData.append("BookId", $("#BookId").val());
+        formData.append("EpisodeId", $("#EpisodeId").val());
+        formData.append("Id", $("#Id").val());
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (response) {
+            if (response.Status) {
+                console.log("blalba");
+            }
+            else {
+                console.log(response);
+                $("#lblName").html(response.item);
+
+
+            }
+        });
+    }
+
+
+
+
+</script>
+
+<style>
+    .form-group {
+        font-size: 1.0em;
+    }
+
+    .bible {
+        box-sizing: content-box;
+        width: 100%;
+        padding: -5px 15px 0px 0px;
+    }
+
+    #lblName {
+        box-sizing: border-box;
+        padding: 0px 0px 0px 10px !important;
+        text-align: right;
+        width: 100%;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    #check {
+        text-align: right;
+        padding: 0px 0px 0px 10px !important;
+    }
+</style>
+

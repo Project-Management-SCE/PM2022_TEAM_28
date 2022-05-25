@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\WebHoly",
-    "\\WebHoly\\Controllers",
-    "\\WebHoly\\Views\\Screen",
-    "\\WebHoly\\Views\\Shared"
+    "\\WebHoly\\Views",
+    "\\WebHoly\\Views\\RegularSubscriptions"
   ],
-  "SelectedNode": "\\WebHoly\\WebHoly.sln",
+  "SelectedNode": "\\WebHoly\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

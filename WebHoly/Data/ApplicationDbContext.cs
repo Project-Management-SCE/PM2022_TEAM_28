@@ -9,7 +9,7 @@ namespace WebHoly.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-       
+
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -33,5 +33,10 @@ namespace WebHoly.Data
         public virtual DbSet<SoulBoard> SoulBoard { get; set; }
         public virtual DbSet<SoulBoardCssType> SoulBoardCssTypes { get; set; }
         public virtual DbSet<ScreenCssType> ScreenCssTypes { get; set; }
+        public virtual DbSet<BookType> BookTypes { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Episode> Episodes { get; set; }
+
+
     }
 }

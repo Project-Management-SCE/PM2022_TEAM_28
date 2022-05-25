@@ -206,7 +206,20 @@ namespace WebHoly.Controllers
             ViewBag.book = book;
             return View(book);
         }
-       
+
+        public async Task<string> BibleApichapter(int sChapter, string book)
+        {
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+            client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
+            var uri = new Uri($"{BASE_URLIbibles}quote.php?hac-{book}/{sChapter}:1-99");
+
+            var stringTask = client.GetStringAsync(uri.AbsoluteUri);
+
+            return await stringTask;
+
+        }
 
 
         public async Task<IActionResult> MidrasSefariaApi(string book, int sChapter, int eChapter)
