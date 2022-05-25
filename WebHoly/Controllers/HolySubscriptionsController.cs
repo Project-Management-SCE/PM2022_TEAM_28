@@ -325,6 +325,7 @@ namespace WebHoly.Controllers
             return payment + 1;
         }
 
+
         public IActionResult PersonalArea()
         {
             var userName = HttpContext.User.Identity.Name;
