@@ -30,7 +30,11 @@
                     <li data-target="#myCarousel1" data-slide-to="0" class="active">
                         <div class="carousel-items active">
                             @if (Model.PrayerTimes != null)
-                            {<div class="midObject">
+                            {
+                                <div class="RevenuSt">
+                                    <h4>זמני תפילות</h4>
+                                </div>
+                                <div class="midObject">
                                     <div class="row">
                                         <div class="col-md-5 "></div>
                                         <span>
@@ -67,6 +71,7 @@
                                     {
                                         @if (item.date.TimeOfDay.ToString() != "00:00:00")
                                         {
+                                            <br />
                                             <strong>
                                                 @item.hebrew
                                             </strong>
@@ -78,12 +83,14 @@
                                         }
                                     }
                                 }
+                                <br />
                                 @foreach (var item in @Model.JewishCalender.items)
                                 {
                                     if (@item.date > DateTime.Now && item.date <= DateTime.Now.AddDays(7))
                                     {
                                         if (item.hebrew.StartsWith("פרשת"))
                                         {
+
                                             <strong>
                                                 @item.hebrew
                                             </strong>
@@ -91,6 +98,7 @@
                                         }
                                     }
                                 }
+                                <br />
                                 <strong> אירועי השבוע </strong>
                                 @foreach (var item in @Model.JewishCalender.items)
                                 {
@@ -111,11 +119,13 @@
                     <li data-target="#myCarousel1" data-slide-to="2">
                         <div class="carousel-items ">
                             <div class="midObject">
-
+                                <div class="RevenuSt">
+                                    <h4> הלכה יומית</h4>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-2 "></div>
-
                                     <div class="m-lg-3" style="max-width:70%; display:flex; justify-content:center;">
+                                        <br />
                                         <strong> @Model.Halachot.Contents</strong>
                                     </div>
 
@@ -127,6 +137,9 @@
                     <li data-target="#myCarousel1" data-slide-to="3">
                         <div class="carousel-items ">
                             <div class="midObject">
+                                <div class="RevenuSt">
+                                    <h4>זמני היום</h4>
+                                </div>
                                 <div class="row " style="margin:10px 10px;">
                                     <div class="col-md-2">
                                     </div>
@@ -265,8 +278,8 @@
                                     </div>
                                 </div>
                                 @if (Model.Times.date.DayOfWeek.ToString() == "Thursday" &&
-                             Model.Times.date.DayOfWeek.ToString() == "Friday" &&
-                             Model.Times.date.DayOfWeek.ToString() == "Saturday")
+                          Model.Times.date.DayOfWeek.ToString() == "Friday" &&
+                          Model.Times.date.DayOfWeek.ToString() == "Saturday")
                                 {
                                     <div class="row " style="margin:15px 15px;">
                                         <div class="col-md-2">
@@ -296,6 +309,11 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        <div>
+            <span>
+                לעילוי נשמת   @Model.SoulBoard.Name  אשר נפטר ב @Model.SoulBoard.DateOfDeathHebrew
+            </span>
         </div>
     </div>
 </div>

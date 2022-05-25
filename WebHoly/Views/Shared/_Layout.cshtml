@@ -5,61 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebHoly</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/Layout/css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/favicon/favicon.ico">
 
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebHoly</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img class="picLogo" src="~/img/צילום מסך 2022-04-05 002322.png" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">דף הבית</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">תקנון</a>
                         </li>
+                       
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="index">מסך ראשי</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Screen" asp-action="TodayTime">זמני היום</a>
                         </li>
-                    </ul>
-
-                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    משתמש בית כנסת
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="FourthScreen">זמני היום</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="FirstScreen">זמני תפילות</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="SecondScreen">זמני שבת ואירועים</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="ThirdScreen">הלכה</a>
-                                    </li>
-
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="PrayerTimes" asp-action="Index">זמני תפילות -עריכה</a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="SoulBoards" asp-action="Index">לוח יזכור</a>
-                                    </li>
-                                </ul>
+                        @if (User.IsInRole("HolyUser"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="index">מסך ראשי</a>
                             </li>
-                        </ul>
-                    </div>
+                        }
+                    </ul>
+                    @if (User.IsInRole("HolyUser"))
+                    {
 
+                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        משתמש בית כנסת
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="FourthScreen">זמני היום</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="FirstScreen">זמני תפילות</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="SecondScreen">זמני שבת ואירועים</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="screen" asp-action="ThirdScreen">הלכה</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="screen" asp-action="CssChange">מסך ראשי- עריכה</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="PrayerTimes" asp-action="Index">זמני תפילות -עריכה</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="SoulBoards" asp-action="Index">לוח יזכור</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        אדמין
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="HolyUserList">משתמשי בית כנסת</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="RevenueStatement">הכנסות  </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="RegularUserList">משתמשי אתר  </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    }
                     <partial name="_LoginPartial" />
                 </div>
             </div>

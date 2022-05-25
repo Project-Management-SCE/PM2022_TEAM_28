@@ -28,7 +28,7 @@ namespace WebHoly.Models
         public string Community { get; set; }
         public string City { get; set; }
 
-        public virtual IdentityUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Payment> Payment { get; set; }
         public virtual ICollection<PrayerTimes> PrayerTimes { get; set; }
         public virtual ICollection<SoulBoard> SoulBoard { get; set; }

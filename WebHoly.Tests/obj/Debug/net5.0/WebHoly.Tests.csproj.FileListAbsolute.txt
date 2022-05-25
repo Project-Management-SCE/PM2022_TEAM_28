@@ -926,7 +926,6 @@ C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.Configuration.UserSecrets.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.Configuration.Xml.dll
-C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -1048,7 +1047,6 @@ C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Resources.Reader.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Resources.ResourceManager.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Resources.Writer.dll
-C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Runtime.dll
 C:\Users\bestr\Source\Repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\refs\System.Runtime.Extensions.dll
@@ -2231,3 +2229,21 @@ C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\bin\Debu
 C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
 C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.WebPages.dll
 C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\JsonFiles\ShulchanAruchAbbreviation.json
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\AngleSharp.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\MailKit.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.Mvc.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.Razor.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.Helpers.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Web.WebPages.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\MimeKit.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\NETCore.MailKit.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Quartz.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Quartz.Extensions.DependencyInjection.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Quartz.Extensions.Hosting.dll
+C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
