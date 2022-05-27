@@ -185,7 +185,63 @@ namespace WebHoly.Controllers
         }
 
 
-        
+        public IActionResult PersonalArea()
+        {
+            var userName = HttpContext.User.Identity.Name;
+            if (userName != null)
+            {
+                var user = _context.Users.Where(x => x.Email == userName).Select(s => s.Id).FirstOrDefault();
+                var regulerUser = _context.RegularSubscription.Where(x => x.UserId == user).Include(X => X.User).FirstOrDefault();
+                return View(regulerUser);
+            }
+            return View();
 
+        }
+
+        public async Task<IActionResult> PersonalAreaEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var regularSubscription = await _context.RegularSubscription.Where(x => x.Id == id).Include(x => x.User).FirstOrDefaultAsync();
+            if (regularSubscription == null)
+            {
+                return NotFound();
+            }
+            var model = new RegularPersonalAreaViewModel()
+            {
+                Age = regularSubscription.Age,
+                Email = regularSubscription.User.Email,
+                FirstName = regularSubscription.FirstName,
+                Id = regularSubscription.Id
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PersonalAreaEditAsync(RegularPersonalAreaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _context.RegularSubscription.Where(x => x.Id == model.Id).Include(x => x.User).FirstOrDefault();
+                var email = user.User.Email;
+                user.Age = model.Age;
+                user.FirstName = model.FirstName;
+                user.User.Email = model.Email;
+                user.User.UserName = model.Email;
+                user.User.NormalizedEmail = model.Email.ToUpper();
+                user.User.NormalizedUserName = model.Email.ToUpper();
+                _context.SaveChanges();
+                if (email != model.Email)
+                {
+                    await _signInManager.SignOutAsync();
+                    return RedirectToAction("Index", "Home");
+                }
+                return RedirectToAction("PersonalArea");
+            }
+            return View(model);
+        }
     }
 }
