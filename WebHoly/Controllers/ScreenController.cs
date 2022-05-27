@@ -16,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebHoly.Controllers
 {
-    [Authorize(Roles = "HolyUser")]
     public class ScreenController : Controller
     {
         private Controllers.ApiController _apiController;
@@ -27,6 +26,7 @@ namespace WebHoly.Controllers
             _apiController = apiController;
             _context = context;
         }
+        [Authorize(Roles = "HolyUser")]
         public async Task<IActionResult> Index()
         {
 
@@ -85,7 +85,7 @@ namespace WebHoly.Controllers
             }
             return View("index");
         }
-
+        [Authorize(Roles = "HolyUser")]
         public async Task<IActionResult> FourthScreen()
         {
             var userName = HttpContext.User.Identity.Name;
@@ -111,6 +111,7 @@ namespace WebHoly.Controllers
             }
             return View("index");
         }
+        [Authorize(Roles = "HolyUser")]
         public async Task<IActionResult> FirstScreen()
         {
 
@@ -133,6 +134,7 @@ namespace WebHoly.Controllers
             return View("index");
 
         }
+        [Authorize(Roles = "HolyUser")]
         public async Task<IActionResult> SecondScreen()
         {
 
@@ -155,7 +157,7 @@ namespace WebHoly.Controllers
             return View("index");
 
         }
-
+        [Authorize(Roles = "HolyUser")]
         public async Task<IActionResult> ThirdScreenAsync()
         {
             var userName = HttpContext.User.Identity.Name;
@@ -179,7 +181,7 @@ namespace WebHoly.Controllers
 
         }
 
-
+        [Authorize(Roles = "HolyUser")]
         [Authorize]
         public IActionResult CssChange()
         {
@@ -189,6 +191,7 @@ namespace WebHoly.Controllers
             ViewBag.FontColor = new SelectList(new List<string> { "white", "sliver", "black", "gold" });
             return View();
         }
+        [Authorize(Roles = "HolyUser")]
         [HttpPost]
         public async Task<IActionResult> CssChange(ScreenCssType screenCssType)
         {
@@ -214,6 +217,8 @@ namespace WebHoly.Controllers
             }
             return RedirectToAction("index");
         }
+        [Authorize(Roles = "RegularUser")]
+
         public async Task<IActionResult> TodayTime()
         {
             {
