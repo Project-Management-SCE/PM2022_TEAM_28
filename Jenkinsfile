@@ -38,7 +38,7 @@ pipeline {
                         }
                       stage('line&branches-covered'){
                                steps {
-                                      sh 'cat WebHoly.Tests/TestResults/b3b05e96-f3bf-49a1-9b65-98dd17071d9d/coverage.cobertura.xml
+                                      sh 'cat WebHoly.Tests/TestResults/b3b05e96-f3bf-49a1-9b65-98dd17071d9d/coverage.cobertura.xml'
                                }
                       }
                }
