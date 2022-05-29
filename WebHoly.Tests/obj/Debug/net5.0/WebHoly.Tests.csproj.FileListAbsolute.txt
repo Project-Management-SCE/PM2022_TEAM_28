@@ -1684,7 +1684,6 @@ C:\Users\97250\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\
 C:\Users\97250\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\97250\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\JsonFiles\ShulchanAruchAbbreviation.json
 C:\Users\97250\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\WebHoly.StaticWebAssets.xml
-C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\CoverletSourceRootsMapping
 C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\obj\Debug\net5.0\WebHoly.Tests.csproj.AssemblyReference.cache
 C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\obj\Debug\net5.0\WebHoly.Tests.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\obj\Debug\net5.0\WebHoly.Tests.AssemblyInfoInputs.cache
@@ -2247,3 +2246,4 @@ C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\
 C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Quartz.Extensions.DependencyInjection.dll
 C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\Quartz.Extensions.Hosting.dll
 C:\Users\bestr\source\repos\Project-Management-SCE\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Asus\OneDrive\מסמכים\GitHub\PM2022_TEAM_28\WebHoly.Tests\bin\Debug\net5.0\coverage.json
