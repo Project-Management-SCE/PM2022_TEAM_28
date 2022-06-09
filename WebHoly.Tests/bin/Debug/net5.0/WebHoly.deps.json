@@ -53,6 +53,7 @@
           "Quartz.Extensions.DependencyInjection": "3.4.0",
           "Quartz.Extensions.Hosting": "3.4.0",
           "System.Configuration.ConfigurationManager": "6.0.0",
+          "coverlet.msbuild": "2.3.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -385,6 +386,7 @@
           "lib/netstandard1.5/Castle.Core.dll": {}
         }
       },
+      "coverlet.msbuild/2.3.0": {},
       "Fare/2.1.1": {
         "dependencies": {
           "NETStandard.Library": "2.0.0"
@@ -4243,6 +4245,13 @@
       "sha512": "sha512-zanbjWC0Y05gbx4eGXkzVycOQqVOFVeCjVsDSyuao9P4mtN1w3WxxTo193NGC7j3o2u3AJRswaoC6hEbnGACnQ==",
       "path": "castle.core/4.4.1",
       "hashPath": "castle.core.4.4.1.nupkg.sha512"
+    },
+    "coverlet.msbuild/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WvPnBhTykRyNsKshOeyP+3Q5juDAz2uFUXeAG2mKRKnv5HAoQnhZX9CC45Ri+mgbHTMmdDR6SJQ38THHbFQ6Yg==",
+      "path": "coverlet.msbuild/2.3.0",
+      "hashPath": "coverlet.msbuild.2.3.0.nupkg.sha512"
     },
     "Fare/2.1.1": {
       "type": "package",

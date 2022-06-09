@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebHoly.Tests.Controllers
 {
-    class ScreenController
+    class MidrasControllersTest
     {
     }
 }

@@ -18,7 +18,6 @@ namespace WebHoly.Tests
         [Theory]
         [InlineData("/")]
         [InlineData("/Privacy")]
-
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
         {
             // Arrange

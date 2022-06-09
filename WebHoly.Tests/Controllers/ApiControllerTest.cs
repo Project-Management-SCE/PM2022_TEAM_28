@@ -29,7 +29,6 @@ namespace WebHoly.Tests.Controllers
         {
             // Arrange
             var mockRepo = new Mock<IHttpClientFactory>();
-           ;
             var controller = new ApiController(mockRepo.Object, user);
             // Act
             var result = controller.Index();
@@ -92,7 +91,7 @@ namespace WebHoly.Tests.Controllers
             var result = controller.HebrewdatesHebcal();
 
             // Assert
-            var viewResult = Assert.IsType<ViewResult>(result);
+            var viewResult = Assert.IsType<IActionResult>(result);
         }
 
         [Fact]
@@ -161,7 +160,7 @@ namespace WebHoly.Tests.Controllers
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-        }
+        } 
 
         [Fact]
         public async Task MidrasSefariaApi_ReturnsAViewResultAsync()

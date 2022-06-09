@@ -23,7 +23,7 @@ namespace WebHoly.Controllers
         }
 
         // GET: SoulBoards
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var user = HttpContext.User.Identity.Name;
 

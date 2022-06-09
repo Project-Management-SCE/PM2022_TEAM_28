@@ -34,7 +34,7 @@ namespace WebHoly.Controllers
         }
 
         // GET: RegularSubscriptions/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id)   //0 1 3 5  null
         {
             if (id == null)
             {
