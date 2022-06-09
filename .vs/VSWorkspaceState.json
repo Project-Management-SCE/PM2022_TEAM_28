@@ -2,9 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\WebHoly",
-    "\\WebHoly\\Views",
-    "\\WebHoly\\Views\\RegularSubscriptions"
+    "\\WebHoly.Tests",
+    "\\WebHoly.Tests\\Controllers",
+    "\\WebHoly\\Controllers",
+    "\\WebHoly\\wwwroot",
+    "\\WebHoly\\wwwroot\\css",
+    "\\WebHoly\\wwwroot\\css\\Layout",
+    "\\WebHoly\\wwwroot\\css\\Layout\\css"
   ],
-  "SelectedNode": "\\WebHoly\\appsettings.json",
+  "SelectedNode": "\\WebHoly\\wwwroot\\css\\Layout\\css\\style.css",
   "PreviewInSolutionExplorer": false
 }

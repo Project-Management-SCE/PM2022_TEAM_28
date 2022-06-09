@@ -38,7 +38,7 @@ namespace WebHoly.Tests.IntegrationTests
 #endregion
 
         #region snippet2
-        //[Fact]
+        [Fact]
         public async Task LoginTest()
         {
             // Arrange
